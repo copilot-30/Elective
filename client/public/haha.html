@@ -1,0 +1,2851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="wrapper">
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <!-- Total Patients Card -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon patients">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002A.274.274 0 0 1 15 13H7ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-title">Total Patients</div>
+                    </div>
+                    <div class="stat-value">1,247</div>
+                    <div class="stat-change positive">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+                        </svg>
+                        +12% from last month
+                    </div>
+                </div>
+
+                <!-- Satisfaction Rate Card -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon satisfaction">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-title">Satisfaction Rate</div>
+                    </div>
+                    <div class="stat-value">4.2/5</div>
+                    <div class="stat-change positive">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+                        </svg>
+                        +0.3 from last month
+                    </div>
+                </div>
+
+                <!-- Today's Appointments Card -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon appointments">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-title">Today's Appointments</div>
+                    </div>
+                    <div class="stat-value">18</div>
+                    <div class="stat-change neutral">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        3 remaining today
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Container -->
+            <div class="charts-container">
+                <!-- Patient Vital Trends Chart -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h2>Patient Vital Trends</h2>
+                        <div class="chart-controls">
+                            <div class="control-group">
+                                <label for="patientSearch">Patient:</label>
+                                <div class="patient-search-container">
+                                    <input type="text" id="patientSearch" placeholder="Search patients..." autocomplete="off">
+                                    <div class="patient-dropdown" id="patientDropdown">
+                                        <div class="patient-option" data-value="patient1">John Santos (P-2024-001)</div>
+                                        <div class="patient-option" data-value="patient2">Sarah Johnson (P-2024-002)</div>
+                                        <div class="patient-option" data-value="patient3">Robert Martinez (P-2024-003)</div>
+                                        <div class="patient-option" data-value="patient4">Maria Garcia (P-2024-004)</div>
+                                        <div class="patient-option" data-value="patient5">David Chen (P-2024-005)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label for="vitalSelect">Vital to Display:</label>
+                                <select id="vitalSelect" onchange="updateChart()">
+                                    <option value="bloodPressure">Blood Pressure</option>
+                                    <option value="heartRate">Heart Rate</option>
+                                    <option value="temperature">Temperature</option>
+                                    <option value="bloodSugar">Blood Sugar</option>
+                                    <option value="oxygen">Oxygen Saturation</option>
+                                    <option value="respiratoryRate">Respiratory Rate</option>
+                                    <option value="bmi">BMI</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div class="chart-container">
+                    <div class="chart-legend" id="chartLegend">
+                        <!-- Legend items will be dynamically generated based on selected vitals -->
+                    </div>
+                    
+                    <div class="chart-area">
+                        <div class="chart-main">
+                            <div class="y-axis" id="yAxis">
+                                <!-- Y-axis labels will be dynamically generated -->
+                            </div>
+                            
+                            <div class="chart-grid" id="chartGrid">
+                                <!-- Grid lines will be dynamically generated -->
+                                <svg class="chart-svg" id="chartSvg" viewBox="0 0 400 200">
+                                    <!-- Chart lines will be dynamically generated -->
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="x-axis" id="xAxis">
+                            <!-- X-axis labels will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current Readings -->
+                <div class="current-readings">
+                    <div class="reading-card">
+                        <div class="reading-label">Blood Pressure</div>
+                        <div class="reading-value">120/80</div>
+                        <div class="reading-status normal">Normal</div>
+                    </div>
+                    <div class="reading-card">
+                        <div class="reading-label">Heart Rate</div>
+                        <div class="reading-value">72 bpm</div>
+                        <div class="reading-status normal">Normal</div>
+                    </div>
+                    <div class="reading-card">
+                        <div class="reading-label">Temperature</div>
+                        <div class="reading-value">98.6°F</div>
+                        <div class="reading-status normal">Normal</div>
+                    </div>
+                    <div class="reading-card">
+                        <div class="reading-label">Last Updated</div>
+                        <div class="reading-value">2 hours ago</div>
+                        <div class="reading-status">Via patient app</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Patient Concerns Chart -->
+            <div class="chart-section">
+                    <div class="chart-header">
+                        <h2>Top Patient Concerns</h2>
+                        <!-- Date Filter Options -->
+                        <div class="date-filter-group">
+                            <label for="dateFilter">Time Period:</label>
+                            <div class="date-filter-buttons">
+                                <button class="date-filter-btn active" data-period="7days" onclick="updateConcernsChart('7days')">Last 7 Days</button>
+                                <button class="date-filter-btn" data-period="30days" onclick="updateConcernsChart('30days')">Last 30 Days</button>
+                                <button class="date-filter-btn" data-period="thismonth" onclick="updateConcernsChart('thismonth')">This Month</button>
+                                <button class="date-filter-btn" data-period="lastmonth" onclick="updateConcernsChart('lastmonth')">Last Month</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-subtitle">Most frequent concerns from patient visits</div>
+                    
+                    <div class="bar-chart-container">
+                        <div class="bar-chart-area">
+                            <div class="bar-chart-main">
+                                <div class="bar-y-axis" id="barYAxis">
+                                    <!-- Y-axis labels will be dynamically generated -->
+                                </div>
+                                
+                                <div class="bar-chart-grid" id="barChartGrid">
+                                    <!-- Bar chart will be dynamically generated -->
+                                </div>
+                            </div>
+                            
+                            <div class="bar-x-axis" id="barXAxis">
+                                <!-- X-axis labels will be dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Concern Stats -->
+                    <div class="concern-stats">
+                        <div class="concern-stat-card">
+                            <div class="concern-stat-label">Most Common</div>
+                            <div class="concern-stat-value">Back Pain</div>
+                            <div class="concern-stat-count">34 patients</div>
+                        </div>
+                        <div class="concern-stat-card">
+                            <div class="concern-stat-label">This Month</div>
+                            <div class="concern-stat-value">+18%</div>
+                            <div class="concern-stat-count">vs last month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row of Charts -->
+            <div class="charts-container">
+                <!-- Appointment Analytics Chart -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h2>Appointment Analytics</h2>
+                        <div class="date-filter-group">
+                            <label for="analyticsTimeframe">Time Period:</label>
+                            <div class="date-filter-buttons">
+                                <button class="date-filter-btn active" data-period="week" onclick="updateAnalyticsTimeframe('week')">Week</button>
+                                <button class="date-filter-btn" data-period="month" onclick="updateAnalyticsTimeframe('month')">Month</button>
+                                <button class="date-filter-btn" data-period="quarter" onclick="updateAnalyticsTimeframe('quarter')">Quarter</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-controls">
+                        <div class="control-group">
+                            <label for="analyticsChart">Chart Type:</label>
+                            <select id="analyticsChart" onchange="updateAnalyticsChart()">
+                                <option value="appointments">Number of Appointments</option>
+                                <option value="noshow">No-Show Rate</option>
+                                <option value="duration">Average Duration</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label for="appointmentType">Appointment Type:</label>
+                            <select id="appointmentType" onchange="updateAnalyticsChart()">
+                                <option value="both">Both</option>
+                                <option value="online">Online</option>
+                                <option value="clinics">Clinics</option>
+                            </select>
+                        </div>
+                        
+                        <div class="control-group" id="clinicFilterGroup" style="display: none;">
+                            <label for="clinicFilter">Clinic:</label>
+                            <select id="clinicFilter" onchange="updateAnalyticsChart()">
+                                <option value="all">All Clinics</option>
+                                <option value="cardiology">Cardiology</option>
+                                <option value="orthopedics">Orthopedics</option>
+                                <option value="neurology">Neurology</option>
+                                <option value="pediatrics">Pediatrics</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-subtitle" id="analyticsSubtitle">Track appointment volume trends over time</div>
+                    
+                    <div class="analytics-chart-container">
+                        <div class="analytics-chart-area">
+                            <div class="analytics-chart-main">
+                                <div class="analytics-y-axis" id="analyticsYAxis">
+                                    <!-- Y-axis labels will be dynamically generated -->
+                                </div>
+                                
+                                <div class="analytics-chart-grid" id="analyticsChartGrid">
+                                    <svg class="analytics-chart-svg" id="analyticsChartSvg" viewBox="0 0 400 200">
+                                        <!-- Chart will be dynamically generated -->
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            <div class="analytics-x-axis" id="analyticsXAxis">
+                                <!-- X-axis labels will be dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Analytics Stats -->
+                    <div class="analytics-stats" id="analyticsStats">
+                        <!-- Stats will be dynamically generated -->
+                    </div>
+                </div>
+
+                <!-- Patient Satisfaction Chart -->
+                <div class="chart-section">
+                    <div class="chart-header">
+                        <h2>Patient Satisfaction Ratings</h2>
+                        <div class="date-filter-group">
+                            <label for="satisfactionFilter">Time Period:</label>
+                            <div class="date-filter-buttons">
+                                <button class="date-filter-btn active" data-period="thismonth" onclick="updateSatisfactionChart('thismonth')">This Month</button>
+                                <button class="date-filter-btn" data-period="lastmonth" onclick="updateSatisfactionChart('lastmonth')">Last Month</button>
+                                <button class="date-filter-btn" data-period="last3months" onclick="updateSatisfactionChart('last3months')">Last 3 Months</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chart-subtitle">Distribution of patient satisfaction ratings (1-5 scale)</div>
+                    
+                    <div class="pie-chart-container">
+                        <div class="pie-chart-area">
+                            <div class="pie-chart-wrapper">
+                                <svg class="pie-chart-svg" id="pieChartSvg" viewBox="0 0 300 300">
+                                    <!-- Pie chart will be dynamically generated -->
+                                </svg>
+                                <div class="pie-chart-center">
+                                    <div class="average-rating" id="averageRating">4.2</div>
+                                    <div class="average-label">Average Rating</div>
+                                </div>
+                            </div>
+                            
+                            <div class="pie-legend" id="pieLegend">
+                                <!-- Legend will be dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Satisfaction Stats -->
+                    <div class="satisfaction-stats">
+                        <div class="satisfaction-stat-card">
+                            <div class="satisfaction-stat-label">Total Responses</div>
+                            <div class="satisfaction-stat-value">342</div>
+                            <div class="satisfaction-stat-count">this month</div>
+                        </div>
+                        <div class="satisfaction-stat-card">
+                            <div class="satisfaction-stat-label">Highly Satisfied</div>
+                            <div class="satisfaction-stat-value">78%</div>
+                            <div class="satisfaction-stat-count">4-5 star ratings</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.container {
+    height: calc(100vh - 100px);
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.stat-icon.patients {
+    background: #1a1a1a;
+}
+
+.stat-icon.satisfaction {
+    background: #16a34a;
+}
+
+.stat-icon.appointments {
+    background: #0ea5e9;
+}
+
+.stat-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.stat-change {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.stat-change.positive {
+    color: #16a34a;
+}
+
+.stat-change.negative {
+    color: #dc2626;
+}
+
+.stat-change.neutral {
+    color: #666;
+}
+
+/* Charts Container */
+.charts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+}
+
+/* Chart Section */
+.chart-section {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Analytics Controls */
+.analytics-controls {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.analytics-chart-container {
+    margin-bottom: 24px;
+}
+
+.analytics-chart-area {
+    position: relative;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.analytics-chart-main {
+    display: flex;
+    flex: 1;
+}
+
+.analytics-y-axis {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.analytics-y-label {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.analytics-chart-grid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.analytics-chart-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.analytics-x-axis {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-left: 40px;
+}
+
+.analytics-x-label {
+    font-size: 12px;
+    color: #666;
+}
+
+.analytics-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.analytics-stat-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.analytics-stat-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.analytics-stat-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.analytics-stat-count {
+    font-size: 11px;
+    color: #888;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.chart-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.chart-subtitle {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+
+.vital-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 2px solid #e5e7eb;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.checkmark.blood-pressure {
+    border-color: #dc2626;
+}
+
+.checkmark.heart-rate {
+    border-color: #0ea5e9;
+}
+
+.checkmark.temperature {
+    border-color: #16a34a;
+}
+
+.checkmark.blood-sugar {
+    border-color: #f59e0b;
+}
+
+.checkmark.oxygen {
+    border-color: #8b5cf6;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background-color: currentColor;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark.blood-pressure {
+    background-color: #dc2626;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark.heart-rate {
+    background-color: #0ea5e9;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark.temperature {
+    background-color: #16a34a;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark.blood-sugar {
+    background-color: #f59e0b;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark.oxygen {
+    background-color: #8b5cf6;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#patientSearch, #vitalSelect, #analyticsChart, #appointmentType, #clinicFilter {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    background: white;
+    width: 200px;
+    cursor: pointer;
+}
+
+#patientSearch:focus, #vitalSelect:focus, #analyticsChart:focus, #appointmentType:focus, #clinicFilter:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+.patient-search-container {
+    position: relative;
+}
+
+.patient-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.patient-dropdown.show {
+    display: block;
+}
+
+.patient-option {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.patient-option:hover {
+    background-color: #f8f9fa;
+}
+
+.patient-option.selected {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.patient-option.hidden {
+    display: none;
+}
+
+.time-range {
+    display: flex;
+    gap: 4px;
+}
+
+.time-btn {
+    padding: 6px 12px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.time-btn.active {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a;
+}
+
+.time-btn:hover {
+    background: #f8f9fa;
+}
+
+.chart-container {
+    margin-bottom: 24px;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.legend-color.blood-pressure {
+    background: #dc2626;
+}
+
+.legend-color.heart-rate {
+    background: #0ea5e9;
+}
+
+.legend-color.temperature {
+    background: #16a34a;
+}
+
+.legend-color.blood-sugar {
+    background: #f59e0b;
+}
+
+.legend-color.oxygen {
+    background: #8b5cf6;
+}
+
+.chart-area {
+    position: relative;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-main {
+    display: flex;
+    flex: 1;
+}
+
+.y-axis {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.y-label {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.chart-grid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+}
+
+.grid-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #f8f9fa;
+}
+
+.chart-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.x-axis {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-left: 40px;
+}
+
+.x-label {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Current Readings */
+.current-readings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.reading-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.reading-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.reading-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.reading-status {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.reading-status.normal {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.reading-status.warning {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.reading-status.critical {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+/* Bar Chart Styles */
+.bar-chart-container {
+    margin-bottom: 24px;
+}
+
+.bar-chart-area {
+    position: relative;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.bar-chart-main {
+    display: flex;
+    flex: 1;
+}
+
+.bar-y-axis {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.bar-y-label {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.bar-chart-grid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 20px 10px 10px 10px;
+    background: #fafafa;
+    height: 280px;
+}
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 80px;
+    position: relative;
+}
+
+.bar {
+    width: 100%;
+    max-width: 50px;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.bar:hover {
+    background: linear-gradient(135deg, #333, #555);
+    transform: translateY(-2px);
+}
+
+.bar-value {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a1a1a;
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bar:hover .bar-value {
+    opacity: 1;
+}
+
+.bar-x-axis {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 10px 0 50px;
+}
+
+.bar-x-label {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    max-width: 80px;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+/* Date Filter Styles */
+
+.date-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.date-filter-group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+
+.date-filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.date-filter-btn {
+    padding: 8px 16px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #666;
+}
+
+.date-filter-btn:hover {
+    background: #f8f9fa;
+    border-color: #d1d5db;
+}
+
+.date-filter-btn.active {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a;
+}
+
+/* Concern Stats */
+.concern-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.concern-stat-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.concern-stat-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.concern-stat-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.concern-stat-count {
+    font-size: 11px;
+    color: #888;
+}
+
+/* Pie Chart Styles */
+.pie-chart-container {
+    margin-bottom: 24px;
+}
+
+.pie-chart-area {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+}
+
+.pie-chart-wrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.pie-chart-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.pie-chart-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.average-rating {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.average-label {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.pie-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pie-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.pie-legend-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.pie-legend-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pie-legend-label {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.pie-legend-value {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Satisfaction Stats */
+.satisfaction-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.satisfaction-stat-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.satisfaction-stat-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.satisfaction-stat-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.satisfaction-stat-count {
+    font-size: 11px;
+    color: #888;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .charts-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .chart-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .chart-controls {
+        justify-content: space-between;
+    }
+
+    .chart-legend {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .y-axis, .bar-y-axis {
+        width: 30px;
+    }
+
+    .current-readings {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .concern-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .pie-chart-area {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .pie-legend {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .chart-section {
+        padding: 16px;
+    }
+
+    .current-readings {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// Patient data with appointment dates and vital records
+const patientData = {
+    patient1: {
+        name: "John Santos",
+        appointments: [
+            { date: '2024-01-15', systolic: 120, diastolic: 80, heartRate: 72, temperature: 98.6, bloodSugar: 95, oxygen: 98, respiratoryRate: 16, bmi: 24.2 },
+            { date: '2024-02-03', systolic: 118, diastolic: 78, heartRate: 68, temperature: 98.4, bloodSugar: 92, oxygen: 97, respiratoryRate: 15, bmi: 24.0 },
+            { date: '2024-02-28', systolic: 125, diastolic: 82, heartRate: 75, temperature: 98.8, bloodSugar: 98, oxygen: 99, respiratoryRate: 17, bmi: 24.3 },
+            { date: '2024-03-15', systolic: 115, diastolic: 75, heartRate: 70, temperature: 98.2, bloodSugar: 89, oxygen: 96, respiratoryRate: 14, bmi: 23.9 },
+            { date: '2024-04-02', systolic: 122, diastolic: 81, heartRate: 73, temperature: 98.7, bloodSugar: 94, oxygen: 98, respiratoryRate: 16, bmi: 24.1 },
+            { date: '2024-04-20', systolic: 128, diastolic: 85, heartRate: 78, temperature: 99.1, bloodSugar: 101, oxygen: 99, respiratoryRate: 18, bmi: 24.4 }
+        ]
+    },
+    patient2: {
+        name: "Sarah Johnson",
+        appointments: [
+            { date: '2024-01-22', systolic: 135, diastolic: 88, heartRate: 85, temperature: 98.8, bloodSugar: 145, oxygen: 96, respiratoryRate: 19, bmi: 27.3 },
+            { date: '2024-02-14', systolic: 132, diastolic: 85, heartRate: 82, temperature: 98.6, bloodSugar: 142, oxygen: 95, respiratoryRate: 18, bmi: 27.1 },
+            { date: '2024-03-08', systolic: 138, diastolic: 90, heartRate: 88, temperature: 99.0, bloodSugar: 148, oxygen: 97, respiratoryRate: 20, bmi: 27.4 },
+            { date: '2024-03-29', systolic: 140, diastolic: 92, heartRate: 90, temperature: 98.9, bloodSugar: 150, oxygen: 94, respiratoryRate: 21, bmi: 27.6 },
+            { date: '2024-04-18', systolic: 136, diastolic: 89, heartRate: 86, temperature: 98.7, bloodSugar: 146, oxygen: 96, respiratoryRate: 19, bmi: 27.2 }
+        ]
+    },
+    patient3: {
+        name: "Robert Martinez",
+        appointments: [
+            { date: '2024-01-10', systolic: 110, diastolic: 70, heartRate: 65, temperature: 98.4, bloodSugar: 85, oxygen: 99, respiratoryRate: 13, bmi: 22.1 },
+            { date: '2024-01-31', systolic: 108, diastolic: 68, heartRate: 62, temperature: 98.2, bloodSugar: 82, oxygen: 98, respiratoryRate: 12, bmi: 21.9 },
+            { date: '2024-02-21', systolic: 112, diastolic: 72, heartRate: 68, temperature: 98.6, bloodSugar: 88, oxygen: 100, respiratoryRate: 14, bmi: 22.2 },
+            { date: '2024-03-12', systolic: 105, diastolic: 65, heartRate: 60, temperature: 98.1, bloodSugar: 79, oxygen: 97, respiratoryRate: 11, bmi: 21.8 },
+            { date: '2024-04-05', systolic: 109, diastolic: 69, heartRate: 66, temperature: 98.5, bloodSugar: 84, oxygen: 99, respiratoryRate: 13, bmi: 22.0 },
+            { date: '2024-04-25', systolic: 114, diastolic: 74, heartRate: 70, temperature: 98.7, bloodSugar: 90, oxygen: 100, respiratoryRate: 15, bmi: 22.3 }
+        ]
+    },
+    patient4: {
+        name: "Maria Garcia",
+        appointments: [
+            { date: '2024-01-18', systolic: 125, diastolic: 82, heartRate: 78, temperature: 98.7, bloodSugar: 110, oxygen: 97, respiratoryRate: 17, bmi: 25.8 },
+            { date: '2024-02-08', systolic: 123, diastolic: 80, heartRate: 75, temperature: 98.5, bloodSugar: 108, oxygen: 96, respiratoryRate: 16, bmi: 25.6 },
+            { date: '2024-02-29', systolic: 128, diastolic: 84, heartRate: 80, temperature: 98.9, bloodSugar: 115, oxygen: 98, respiratoryRate: 18, bmi: 25.9 },
+            { date: '2024-03-20', systolic: 120, diastolic: 78, heartRate: 73, temperature: 98.3, bloodSugar: 105, oxygen: 95, respiratoryRate: 15, bmi: 25.4 },
+            { date: '2024-04-10', systolic: 127, diastolic: 83, heartRate: 79, temperature: 98.8, bloodSugar: 112, oxygen: 97, respiratoryRate: 17, bmi: 25.7 }
+        ]
+    },
+    patient5: {
+        name: "David Chen",
+        appointments: [
+            { date: '2024-01-25', systolic: 115, diastolic: 75, heartRate: 68, temperature: 98.5, bloodSugar: 88, oxygen: 98, respiratoryRate: 14, bmi: 23.2 },
+            { date: '2024-02-16', systolic: 113, diastolic: 73, heartRate: 65, temperature: 98.3, bloodSugar: 85, oxygen: 97, respiratoryRate: 13, bmi: 23.0 },
+            { date: '2024-03-07', systolic: 118, diastolic: 76, heartRate: 71, temperature: 98.7, bloodSugar: 91, oxygen: 99, respiratoryRate: 15, bmi: 23.3 },
+            { date: '2024-03-28', systolic: 110, diastolic: 70, heartRate: 63, temperature: 98.1, bloodSugar: 82, oxygen: 96, respiratoryRate: 12, bmi: 22.9 },
+            { date: '2024-04-15', systolic: 116, diastolic: 74, heartRate: 69, temperature: 98.6, bloodSugar: 87, oxygen: 98, respiratoryRate: 14, bmi: 23.1 }
+        ]
+    }
+};
+
+let currentPatient = 'patient1';
+
+// Patient concerns data by time period
+const concernsDataByPeriod = {
+    '7days': [
+        { concern: 'Back Pain', count: 8, color: '#1a1a1a' },
+        { concern: 'Headaches', count: 6, color: '#333' },
+        { concern: 'Joint Pain', count: 4, color: '#555' },
+        { concern: 'Fatigue', count: 3, color: '#777' },
+        { concern: 'Sleep Issues', count: 2, color: '#999' },
+        { concern: 'Anxiety', count: 2, color: '#bbb' }
+    ],
+    '30days': [
+        { concern: 'Back Pain', count: 34, color: '#1a1a1a' },
+        { concern: 'Headaches', count: 28, color: '#333' },
+        { concern: 'Joint Pain', count: 22, color: '#555' },
+        { concern: 'Fatigue', count: 19, color: '#777' },
+        { concern: 'Sleep Issues', count: 15, color: '#999' },
+        { concern: 'Anxiety', count: 12, color: '#bbb' }
+    ],
+    'thismonth': [
+        { concern: 'Back Pain', count: 26, color: '#1a1a1a' },
+        { concern: 'Headaches', count: 21, color: '#333' },
+        { concern: 'Joint Pain', count: 18, color: '#555' },
+        { concern: 'Fatigue', count: 14, color: '#777' },
+        { concern: 'Sleep Issues', count: 11, color: '#999' },
+        { concern: 'Anxiety', count: 9, color: '#bbb' }
+    ],
+    'lastmonth': [
+        { concern: 'Back Pain', count: 29, color: '#1a1a1a' },
+        { concern: 'Headaches', count: 24, color: '#333' },
+        { concern: 'Joint Pain', count: 20, color: '#555' },
+        { concern: 'Fatigue', count: 16, color: '#777' },
+        { concern: 'Sleep Issues', count: 13, color: '#999' },
+        { concern: 'Anxiety', count: 10, color: '#bbb' }
+    ]
+};
+
+// Satisfaction data by time period
+const satisfactionDataByPeriod = {
+    'thismonth': [
+        { rating: 5, count: 156, percentage: 45.6, color: '#16a34a' },
+        { rating: 4, count: 112, percentage: 32.7, color: '#84cc16' },
+        { rating: 3, count: 48, percentage: 14.0, color: '#f59e0b' },
+        { rating: 2, count: 18, percentage: 5.3, color: '#f97316' },
+        { rating: 1, count: 8, percentage: 2.3, color: '#dc2626' }
+    ],
+    'lastmonth': [
+        { rating: 5, count: 142, percentage: 43.2, color: '#16a34a' },
+        { rating: 4, count: 108, percentage: 32.9, color: '#84cc16' },
+        { rating: 3, count: 52, percentage: 15.8, color: '#f59e0b' },
+        { rating: 2, count: 19, percentage: 5.8, color: '#f97316' },
+        { rating: 1, count: 8, percentage: 2.4, color: '#dc2626' }
+    ],
+    'last3months': [
+        { rating: 5, count: 445, percentage: 44.1, color: '#16a34a' },
+        { rating: 4, count: 334, percentage: 33.1, color: '#84cc16' },
+        { rating: 3, count: 148, percentage: 14.7, color: '#f59e0b' },
+        { rating: 2, count: 55, percentage: 5.4, color: '#f97316' },
+        { rating: 1, count: 27, percentage: 2.7, color: '#dc2626' }
+    ]
+};
+
+let currentPeriod = '7days';
+let currentSatisfactionPeriod = 'thismonth';
+let currentAnalyticsChart = 'appointments';
+let currentAnalyticsTimeframe = 'week';
+let currentAppointmentType = 'both';
+let currentClinic = 'all';
+const concernsData = concernsDataByPeriod[currentPeriod];
+
+// Appointment analytics data
+const appointmentAnalyticsData = {
+    appointments: {
+        week: {
+            both: {
+                all: [
+                    { date: '2024-04-15', value: 45 },
+                    { date: '2024-04-16', value: 52 },
+                    { date: '2024-04-17', value: 38 },
+                    { date: '2024-04-18', value: 61 },
+                    { date: '2024-04-19', value: 48 },
+                    { date: '2024-04-20', value: 35 },
+                    { date: '2024-04-21', value: 28 }
+                ]
+            },
+            online: {
+                all: [
+                    { date: '2024-04-15', value: 28 },
+                    { date: '2024-04-16', value: 32 },
+                    { date: '2024-04-17', value: 22 },
+                    { date: '2024-04-18', value: 38 },
+                    { date: '2024-04-19', value: 29 },
+                    { date: '2024-04-20', value: 21 },
+                    { date: '2024-04-21', value: 16 }
+                ]
+            },
+            clinics: {
+                all: [
+                    { date: '2024-04-15', value: 17 },
+                    { date: '2024-04-16', value: 20 },
+                    { date: '2024-04-17', value: 16 },
+                    { date: '2024-04-18', value: 23 },
+                    { date: '2024-04-19', value: 19 },
+                    { date: '2024-04-20', value: 14 },
+                    { date: '2024-04-21', value: 12 }
+                ],
+                cardiology: [
+                    { date: '2024-04-15', value: 6 },
+                    { date: '2024-04-16', value: 7 },
+                    { date: '2024-04-17', value: 5 },
+                    { date: '2024-04-18', value: 8 },
+                    { date: '2024-04-19', value: 6 },
+                    { date: '2024-04-20', value: 4 },
+                    { date: '2024-04-21', value: 3 }
+                ],
+                orthopedics: [
+                    { date: '2024-04-15', value: 4 },
+                    { date: '2024-04-16', value: 5 },
+                    { date: '2024-04-17', value: 4 },
+                    { date: '2024-04-18', value: 6 },
+                    { date: '2024-04-19', value: 5 },
+                    { date: '2024-04-20', value: 3 },
+                    { date: '2024-04-21', value: 3 }
+                ],
+                neurology: [
+                    { date: '2024-04-15', value: 4 },
+                    { date: '2024-04-16', value: 4 },
+                    { date: '2024-04-17', value: 3 },
+                    { date: '2024-04-18', value: 5 },
+                    { date: '2024-04-19', value: 4 },
+                    { date: '2024-04-20', value: 3 },
+                    { date: '2024-04-21', value: 3 }
+                ],
+                pediatrics: [
+                    { date: '2024-04-15', value: 3 },
+                    { date: '2024-04-16', value: 4 },
+                    { date: '2024-04-17', value: 4 },
+                    { date: '2024-04-18', value: 4 },
+                    { date: '2024-04-19', value: 4 },
+                    { date: '2024-04-20', value: 4 },
+                    { date: '2024-04-21', value: 3 }
+                ]
+            }
+        },
+        month: {
+            both: {
+                all: [
+                    { date: 'Week 1', value: 285 },
+                    { date: 'Week 2', value: 312 },
+                    { date: 'Week 3', value: 298 },
+                    { date: 'Week 4', value: 267 }
+                ]
+            },
+            online: {
+                all: [
+                    { date: 'Week 1', value: 172 },
+                    { date: 'Week 2', value: 186 },
+                    { date: 'Week 3', value: 178 },
+                    { date: 'Week 4', value: 158 }
+                ]
+            },
+            clinics: {
+                all: [
+                    { date: 'Week 1', value: 113 },
+                    { date: 'Week 2', value: 126 },
+                    { date: 'Week 3', value: 120 },
+                    { date: 'Week 4', value: 109 }
+                ]
+            }
+        }
+    },
+    noshow: {
+        week: {
+            both: {
+                all: [
+                    { date: '2024-04-15', value: 8.9 },
+                    { date: '2024-04-16', value: 7.7 },
+                    { date: '2024-04-17', value: 10.5 },
+                    { date: '2024-04-18', value: 6.6 },
+                    { date: '2024-04-19', value: 9.2 },
+                    { date: '2024-04-20', value: 11.4 },
+                    { date: '2024-04-21', value: 14.3 }
+                ]
+            },
+            online: {
+                all: [
+                    { date: '2024-04-15', value: 5.2 },
+                    { date: '2024-04-16', value: 4.1 },
+                    { date: '2024-04-17', value: 6.8 },
+                    { date: '2024-04-18', value: 3.9 },
+                    { date: '2024-04-19', value: 5.5 },
+                    { date: '2024-04-20', value: 7.2 },
+                    { date: '2024-04-21', value: 8.9 }
+                ]
+            },
+            clinics: {
+                all: [
+                    { date: '2024-04-15', value: 12.8 },
+                    { date: '2024-04-16', value: 11.5 },
+                    { date: '2024-04-17', value: 14.2 },
+                    { date: '2024-04-18', value: 9.3 },
+                    { date: '2024-04-19', value: 12.9 },
+                    { date: '2024-04-20', value: 15.6 },
+                    { date: '2024-04-21', value: 19.7 }
+                ]
+            }
+        }
+    },
+    duration: {
+        week: {
+            both: {
+                all: [
+                    { date: '2024-04-15', value: 28 },
+                    { date: '2024-04-16', value: 32 },
+                    { date: '2024-04-17', value: 26 },
+                    { date: '2024-04-18', value: 35 },
+                    { date: '2024-04-19', value: 30 },
+                    { date: '2024-04-20', value: 29 },
+                    { date: '2024-04-21', value: 31 }
+                ]
+            },
+            online: {
+                all: [
+                    { date: '2024-04-15', value: 22 },
+                    { date: '2024-04-16', value: 25 },
+                    { date: '2024-04-17', value: 19 },
+                    { date: '2024-04-18', value: 27 },
+                    { date: '2024-04-19', value: 23 },
+                    { date: '2024-04-20', value: 21 },
+                    { date: '2024-04-21', value: 24 }
+                ]
+            },
+            clinics: {
+                all: [
+                    { date: '2024-04-15', value: 35 },
+                    { date: '2024-04-16', value: 39 },
+                    { date: '2024-04-17', value: 33 },
+                    { date: '2024-04-18', value: 43 },
+                    { date: '2024-04-19', value: 37 },
+                    { date: '2024-04-20', value: 37 },
+                    { date: '2024-04-21', value: 38 }
+                ]
+            }
+        }
+    }
+};
+
+// Set current date
+function setCurrentDate() {
+    const now = new Date();
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    };
+    if (document.getElementById('currentDate')) {
+        document.getElementById('currentDate').textContent = now.toLocaleDateString('en-US', options);
+    }
+}
+
+// Get selected vital
+function getSelectedVital() {
+    return document.getElementById('vitalSelect').value;
+}
+
+// Get all appointment data for the patient
+function getAppointmentData(patientAppointments) {
+    return patientAppointments;
+}
+
+// Format date for display
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+// Convert actual vital values to chart coordinates
+function vitalValueToChartValue(value) {
+    // Direct mapping - no normalization needed
+    return value;
+}
+
+// Generate Y-axis labels based on selected vital
+function generateYAxisLabels(selectedVital) {
+    const vitalRanges = {
+        bloodPressure: { min: 60, max: 160, step: 10 },
+        heartRate: { min: 50, max: 120, step: 10 },
+        temperature: { min: 95, max: 102, step: 1 },
+        bloodSugar: { min: 45, max: 150, step: 15 },
+        oxygen: { min: 60, max: 105, step: 5 },
+        respiratoryRate: { min: 9, max: 28, step: 2 },
+        bmi: { min: 13, max: 32, step: 2 }
+    };
+    
+    const range = vitalRanges[selectedVital];
+    const labels = [];
+    for (let i = range.max; i >= range.min; i -= range.step) {
+        labels.push(i);
+    }
+    return labels;
+}
+
+// Convert actual value to SVG Y coordinate
+function valueToY(value, minY, maxY) {
+    // Map value from vital's range to 0-200 SVG coordinates
+    const range = maxY - minY;
+    return ((maxY - value) / range) * 200;
+}
+
+// Generate chart
+function generateChart() {
+    const patientAppointments = patientData[currentPatient].appointments;
+    const appointmentData = getAppointmentData(patientAppointments);
+    const selectedVital = getSelectedVital();
+    
+    if (appointmentData.length === 0) {
+        // Handle case where no appointment data is available
+        document.getElementById('chartSvg').innerHTML = '';
+        document.getElementById('xAxis').innerHTML = '<div class="x-label">No appointment data available</div>';
+        return;
+    }
+    
+    const yLabels = generateYAxisLabels(selectedVital);
+    const vitalRanges = {
+        bloodPressure: { min: 60, max: 160 },
+        heartRate: { min: 50, max: 120 },
+        temperature: { min: 95, max: 102 },
+        bloodSugar: { min: 45, max: 150 },
+        oxygen: { min: 60, max: 105 },
+        respiratoryRate: { min: 9, max: 28 },
+        bmi: { min: 13, max: 32 }
+    };
+    
+    const range = vitalRanges[selectedVital];
+    const minY = range.min;
+    const maxY = range.max;
+    
+    // Update legend based on selected vital
+    updateLegend(selectedVital);
+    
+    // Update Y-axis with actual value labels
+    const yAxis = document.getElementById('yAxis');
+    yAxis.innerHTML = '';
+    yLabels.forEach(label => {
+        const div = document.createElement('div');
+        div.className = 'y-label';
+        div.textContent = label;
+        yAxis.appendChild(div);
+    });
+    
+    // Update X-axis with appointment dates
+    const xAxis = document.getElementById('xAxis');
+    xAxis.innerHTML = '';
+    appointmentData.forEach(appointment => {
+        const div = document.createElement('div');
+        div.className = 'x-label';
+        div.textContent = formatDate(appointment.date);
+        xAxis.appendChild(div);
+    });
+    
+    // Update grid lines
+    const chartGrid = document.getElementById('chartGrid');
+    const existingGridLines = chartGrid.querySelectorAll('.grid-line');
+    existingGridLines.forEach(line => line.remove());
+    
+    const gridLineCount = yLabels.length - 1;
+    for (let i = 0; i <= gridLineCount; i++) {
+        const gridLine = document.createElement('div');
+        gridLine.className = 'grid-line';
+        gridLine.style.top = `${(i / gridLineCount) * 100}%`;
+        chartGrid.appendChild(gridLine);
+    }
+    
+    // Update SVG chart
+    const svg = document.getElementById('chartSvg');
+    svg.innerHTML = '';
+    
+    const pointsPerLine = appointmentData.length;
+    const xStep = pointsPerLine > 1 ? 400 / (pointsPerLine - 1) : 200;
+    
+    // Define vital configurations
+    const vitalConfigs = {
+        bloodPressure: { 
+            systolic: { color: '#dc2626', label: 'Systolic', unit: 'mmHg' },
+            diastolic: { color: '#f87171', label: 'Diastolic', unit: 'mmHg' }
+        },
+        heartRate: { color: '#0ea5e9', label: 'HR', unit: 'bpm' },
+        temperature: { color: '#16a34a', label: 'Temp', unit: '°F' },
+        bloodSugar: { color: '#f59e0b', label: 'Blood Sugar', unit: 'mg/dL' },
+        oxygen: { color: '#8b5cf6', label: 'O2 Sat', unit: '%' },
+        respiratoryRate: { color: '#06b6d4', label: 'Resp Rate', unit: '/min' },
+        bmi: { color: '#84cc16', label: 'BMI', unit: '' }
+    };
+    
+    // Generate lines and points for selected vital
+    if (selectedVital === 'bloodPressure') {
+        // Handle blood pressure with two lines (systolic and diastolic)
+        ['systolic', 'diastolic'].forEach(bpType => {
+            const config = vitalConfigs.bloodPressure[bpType];
+            const vitalData = appointmentData.map(appointment => appointment[bpType]).filter(val => val !== undefined);
+            
+            if (vitalData.length > 0) {
+                // Create line
+                const points = appointmentData.map((appointment, index) => {
+                    if (appointment[bpType] !== undefined) {
+                        return `${index * xStep},${valueToY(appointment[bpType], minY, maxY)}`;
+                    }
+                    return null;
+                }).filter(point => point !== null).join(' ');
+                
+                if (points) {
+                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                    line.setAttribute('points', points);
+                    line.setAttribute('fill', 'none');
+                    line.setAttribute('stroke', config.color);
+                    line.setAttribute('stroke-width', '3');
+                    line.className = `chart-line ${bpType}-line`;
+                    svg.appendChild(line);
+                }
+                
+                // Create points
+                appointmentData.forEach((appointment, index) => {
+                    if (appointment[bpType] !== undefined) {
+                        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                        circle.setAttribute('cx', index * xStep);
+                        circle.setAttribute('cy', valueToY(appointment[bpType], minY, maxY));
+                        circle.setAttribute('r', '4');
+                        circle.setAttribute('fill', config.color);
+                        circle.style.cursor = 'pointer';
+                        circle.addEventListener('mouseenter', (e) => 
+                            showTooltip(e, `${config.label}: ${appointment[bpType]} ${config.unit}`, formatDate(appointment.date))
+                        );
+                        circle.addEventListener('mouseleave', hideTooltip);
+                        svg.appendChild(circle);
+                    }
+                });
+            }
+        });
+    } else {
+        // Handle other vitals with single line
+        const config = vitalConfigs[selectedVital];
+        const vitalData = appointmentData.map(appointment => appointment[selectedVital]).filter(val => val !== undefined);
+        
+        if (vitalData.length > 0) {
+            // Create line
+            const points = appointmentData.map((appointment, index) => {
+                if (appointment[selectedVital] !== undefined) {
+                    return `${index * xStep},${valueToY(appointment[selectedVital], minY, maxY)}`;
+                }
+                return null;
+            }).filter(point => point !== null).join(' ');
+            
+            if (points) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+                line.setAttribute('points', points);
+                line.setAttribute('fill', 'none');
+                line.setAttribute('stroke', config.color);
+                line.setAttribute('stroke-width', '3');
+                line.className = `chart-line ${selectedVital}-line`;
+                svg.appendChild(line);
+            }
+            
+            // Create points
+            appointmentData.forEach((appointment, index) => {
+                if (appointment[selectedVital] !== undefined) {
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', index * xStep);
+                    circle.setAttribute('cy', valueToY(appointment[selectedVital], minY, maxY));
+                    circle.setAttribute('r', '4');
+                    circle.setAttribute('fill', config.color);
+                    circle.style.cursor = 'pointer';
+                    circle.addEventListener('mouseenter', (e) => 
+                        showTooltip(e, `${config.label}: ${appointment[selectedVital]} ${config.unit}`, formatDate(appointment.date))
+                    );
+                    circle.addEventListener('mouseleave', hideTooltip);
+                    svg.appendChild(circle);
+                }
+            });
+        }
+    }
+    
+    // Update current readings with latest appointment data
+    updateCurrentReadings(appointmentData, selectedVital);
+}
+
+// Update legend based on selected vital
+function updateLegend(selectedVital) {
+    const legend = document.getElementById('chartLegend');
+    legend.innerHTML = '';
+    
+    const vitalLabels = {
+        bloodPressure: [
+            { label: 'Systolic (mmHg)', color: '#dc2626' },
+            { label: 'Diastolic (mmHg)', color: '#f87171' }
+        ],
+        heartRate: [{ label: 'Heart Rate (bpm)', color: '#0ea5e9' }],
+        temperature: [{ label: 'Temperature (°F)', color: '#16a34a' }],
+        bloodSugar: [{ label: 'Blood Sugar (mg/dL)', color: '#f59e0b' }],
+        oxygen: [{ label: 'Oxygen Saturation (%)', color: '#8b5cf6' }],
+        respiratoryRate: [{ label: 'Respiratory Rate (/min)', color: '#06b6d4' }],
+        bmi: [{ label: 'BMI', color: '#84cc16' }]
+    };
+    
+    const items = vitalLabels[selectedVital];
+    if (items) {
+        items.forEach(item => {
+            const legendItem = document.createElement('div');
+            legendItem.className = 'legend-item';
+            
+            const colorBox = document.createElement('div');
+            colorBox.className = 'legend-color';
+            colorBox.style.backgroundColor = item.color;
+            
+            const label = document.createElement('span');
+            label.textContent = item.label;
+            
+            legendItem.appendChild(colorBox);
+            legendItem.appendChild(label);
+            legend.appendChild(legendItem);
+        });
+    }
+}
+
+// Show tooltip on hover
+function showTooltip(event, value, label) {
+    let tooltip = document.getElementById('chartTooltip');
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.id = 'chartTooltip';
+        tooltip.style.cssText = `
+            position: absolute;
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            white-space: nowrap;
+        `;
+        document.body.appendChild(tooltip);
+    }
+    
+    tooltip.innerHTML = `<strong>${label}</strong><br>${value}`;
+    tooltip.style.display = 'block';
+    tooltip.style.left = event.pageX + 10 + 'px';
+    tooltip.style.top = event.pageY - 10 + 'px';
+}
+
+// Hide tooltip
+function hideTooltip() {
+    const tooltip = document.getElementById('chartTooltip');
+    if (tooltip) {
+        tooltip.style.display = 'none';
+    }
+}
+
+// Update current readings
+function updateCurrentReadings(appointmentData, selectedVital) {
+    // Clear current readings
+    const currentReadings = document.querySelector('.current-readings');
+    currentReadings.innerHTML = '';
+    
+    if (appointmentData.length === 0) {
+        const noDataCard = document.createElement('div');
+        noDataCard.className = 'reading-card';
+        noDataCard.innerHTML = `
+            <div class="reading-label">No Data</div>
+            <div class="reading-value">--</div>
+            <div class="reading-status">No appointment data available</div>
+        `;
+        currentReadings.appendChild(noDataCard);
+        return;
+    }
+    
+    // Get the most recent appointment
+    const latestAppointment = appointmentData[appointmentData.length - 1];
+    
+    // Add reading for selected vital
+    const vitalConfigs = {
+        bloodPressure: { label: 'Blood Pressure', unit: '' },
+        heartRate: { label: 'Heart Rate', unit: 'bpm' },
+        temperature: { label: 'Temperature', unit: '°F' },
+        bloodSugar: { label: 'Blood Sugar', unit: 'mg/dL' },
+        oxygen: { label: 'Oxygen Saturation', unit: '%' },
+        respiratoryRate: { label: 'Respiratory Rate', unit: '/min' },
+        bmi: { label: 'BMI', unit: '' }
+    };
+    
+    const config = vitalConfigs[selectedVital];
+    if (config) {
+        const readingCard = document.createElement('div');
+        readingCard.className = 'reading-card';
+        
+        let displayValue;
+        if (selectedVital === 'bloodPressure') {
+            displayValue = `${latestAppointment.systolic}/${latestAppointment.diastolic}`;
+        } else {
+            displayValue = config.unit ? `${latestAppointment[selectedVital]} ${config.unit}` : latestAppointment[selectedVital];
+        }
+        
+        readingCard.innerHTML = `
+            <div class="reading-label">${config.label}</div>
+            <div class="reading-value">${displayValue}</div>
+            <div class="reading-status normal">Normal</div>
+        `;
+        
+        currentReadings.appendChild(readingCard);
+    }
+    
+    // Add last appointment card
+    const lastAppointmentCard = document.createElement('div');
+    lastAppointmentCard.className = 'reading-card';
+    lastAppointmentCard.innerHTML = `
+        <div class="reading-label">Last Appointment</div>
+        <div class="reading-value">${formatDate(latestAppointment.date)}</div>
+        <div class="reading-status">In-office visit</div>
+    `;
+    currentReadings.appendChild(lastAppointmentCard);
+}
+
+// Update chart based on selected patient
+function updateChart() {
+    generateChart();
+}
+
+// Initialize patient search functionality
+function initializePatientSearch() {
+    const searchInput = document.getElementById('patientSearch');
+    const dropdown = document.getElementById('patientDropdown');
+    const options = dropdown.querySelectorAll('.patient-option');
+    
+    // Set initial value
+    const initialPatient = patientData[currentPatient];
+    if (initialPatient) {
+        const initialOption = dropdown.querySelector(`[data-value="${currentPatient}"]`);
+        if (initialOption) {
+            searchInput.value = initialOption.textContent;
+        }
+    }
+    
+    // Show dropdown on focus
+    searchInput.addEventListener('focus', function() {
+        dropdown.classList.add('show');
+        filterPatients('');
+    });
+    
+    // Filter patients as user types
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        filterPatients(searchTerm);
+        dropdown.classList.add('show');
+    });
+    
+    // Hide dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.patient-search-container')) {
+            dropdown.classList.remove('show');
+        }
+    });
+    
+    // Handle option selection
+    options.forEach(option => {
+        option.addEventListener('click', function() {
+            const patientId = this.getAttribute('data-value');
+            const patientName = this.textContent;
+            
+            searchInput.value = patientName;
+            currentPatient = patientId;
+            dropdown.classList.remove('show');
+            
+            // Update selected state
+            options.forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // Update chart
+            updateChart();
+        });
+    });
+    
+    // Handle keyboard navigation
+    searchInput.addEventListener('keydown', function(event) {
+        const visibleOptions = Array.from(options).filter(opt => !opt.classList.contains('hidden'));
+        const selectedOption = dropdown.querySelector('.patient-option.selected');
+        let selectedIndex = visibleOptions.indexOf(selectedOption);
+        
+        switch(event.key) {
+            case 'ArrowDown':
+                event.preventDefault();
+                selectedIndex = Math.min(selectedIndex + 1, visibleOptions.length - 1);
+                updateSelection(visibleOptions, selectedIndex);
+                break;
+            case 'ArrowUp':
+                event.preventDefault();
+                selectedIndex = Math.max(selectedIndex - 1, 0);
+                updateSelection(visibleOptions, selectedIndex);
+                break;
+            case 'Enter':
+                event.preventDefault();
+                if (selectedOption) {
+                    selectedOption.click();
+                }
+                break;
+            case 'Escape':
+                dropdown.classList.remove('show');
+                break;
+        }
+    });
+}
+
+// Filter patients based on search term
+function filterPatients(searchTerm) {
+    const options = document.querySelectorAll('.patient-option');
+    let hasVisibleOptions = false;
+    
+    options.forEach(option => {
+        const text = option.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+            option.classList.remove('hidden');
+            hasVisibleOptions = true;
+        } else {
+            option.classList.add('hidden');
+            option.classList.remove('selected');
+        }
+    });
+    
+    // Select first visible option if none selected
+    if (hasVisibleOptions) {
+        const firstVisible = document.querySelector('.patient-option:not(.hidden)');
+        if (!document.querySelector('.patient-option.selected:not(.hidden)')) {
+            options.forEach(opt => opt.classList.remove('selected'));
+            if (firstVisible) {
+                firstVisible.classList.add('selected');
+            }
+        }
+    }
+}
+
+// Update selection for keyboard navigation
+function updateSelection(visibleOptions, selectedIndex) {
+    const options = document.querySelectorAll('.patient-option');
+    options.forEach(opt => opt.classList.remove('selected'));
+    
+    if (visibleOptions[selectedIndex]) {
+        visibleOptions[selectedIndex].classList.add('selected');
+        visibleOptions[selectedIndex].scrollIntoView({ block: 'nearest' });
+    }
+}
+
+// Animate stat cards on load
+function animateStats() {
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach((card, index) => {
+        setTimeout(() => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        }, index * 200);
+    });
+}
+
+// Update concerns chart based on selected period
+function updateConcernsChart(period) {
+    currentPeriod = period;
+    
+    // Update active button
+    document.querySelectorAll('.date-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    document.querySelector(`[data-period="${period}"]`).classList.add('active');
+    
+    // Regenerate chart with new data
+    generateBarChart();
+}
+
+// Generate bar chart for patient concerns
+function generateBarChart() {
+    const currentConcernsData = concernsDataByPeriod[currentPeriod];
+    const maxCount = Math.max(...currentConcernsData.map(item => item.count));
+    const yAxisMax = Math.ceil(maxCount / 10) * 10; // Round up to nearest 10
+    
+    // Generate Y-axis labels
+    const barYAxis = document.getElementById('barYAxis');
+    barYAxis.innerHTML = '';
+    for (let i = yAxisMax; i >= 0; i -= Math.ceil(yAxisMax / 5)) {
+        const label = document.createElement('div');
+        label.className = 'bar-y-label';
+        label.textContent = i;
+        barYAxis.appendChild(label);
+    }
+    
+    // Generate bars
+    const barChartGrid = document.getElementById('barChartGrid');
+    barChartGrid.innerHTML = '';
+    
+    currentConcernsData.forEach(item => {
+        const barItem = document.createElement('div');
+        barItem.className = 'bar-item';
+        
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        const barHeight = (item.count / yAxisMax) * 240; // 240px matches the available chart height
+        bar.style.height = `${barHeight}px`;
+        bar.style.background = `linear-gradient(135deg, ${item.color}, ${item.color}dd)`;
+        
+        const barValue = document.createElement('div');
+        barValue.className = 'bar-value';
+        barValue.textContent = item.count;
+        
+        bar.appendChild(barValue);
+        barItem.appendChild(bar);
+        barChartGrid.appendChild(barItem);
+    });
+    
+    // Generate X-axis labels
+    const barXAxis = document.getElementById('barXAxis');
+    barXAxis.innerHTML = '';
+    currentConcernsData.forEach(item => {
+        const label = document.createElement('div');
+        label.className = 'bar-x-label';
+        label.textContent = item.concern;
+        barXAxis.appendChild(label);
+    });
+    
+    // Update concern stats
+    updateConcernStats(currentConcernsData);
+}
+
+// Update concern statistics based on current data
+function updateConcernStats(data) {
+    const mostCommon = data[0];
+    const totalConcerns = data.reduce((sum, item) => sum + item.count, 0);
+    
+    // Calculate percentage change (simulated)
+    const changePercentages = {
+        '7days': '+12%',
+        '30days': '+18%',
+        'thismonth': '+15%',
+        'lastmonth': '+8%'
+    };
+    
+    const concernStats = document.querySelector('.concern-stats');
+    concernStats.innerHTML = `
+        <div class="concern-stat-card">
+            <div class="concern-stat-label">Most Common</div>
+            <div class="concern-stat-value">${mostCommon.concern}</div>
+            <div class="concern-stat-count">${mostCommon.count} patients</div>
+        </div>
+        <div class="concern-stat-card">
+            <div class="concern-stat-label">Change</div>
+            <div class="concern-stat-value">${changePercentages[currentPeriod]}</div>
+            <div class="concern-stat-count">vs previous period</div>
+        </div>
+    `;
+}
+
+// Update satisfaction chart based on selected period
+function updateSatisfactionChart(period) {
+    currentSatisfactionPeriod = period;
+    
+    // Update active button for satisfaction chart
+    const satisfactionSection = document.querySelector('.satisfaction-chart-section');
+    satisfactionSection.querySelectorAll('.date-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    satisfactionSection.querySelector(`[data-period="${period}"]`).classList.add('active');
+    
+    // Regenerate pie chart with new data
+    generatePieChart();
+}
+
+// Generate pie chart for satisfaction ratings
+function generatePieChart() {
+    const currentSatisfactionData = satisfactionDataByPeriod[currentSatisfactionPeriod];
+    const svg = document.getElementById('pieChartSvg');
+    const legend = document.getElementById('pieLegend');
+    
+    // Clear existing content
+    svg.innerHTML = '';
+    legend.innerHTML = '';
+    
+    // Calculate total and average
+    const total = currentSatisfactionData.reduce((sum, item) => sum + item.count, 0);
+    const weightedSum = currentSatisfactionData.reduce((sum, item) => sum + (item.rating * item.count), 0);
+    const average = (weightedSum / total).toFixed(1);
+    
+    // Update average rating display
+    document.getElementById('averageRating').textContent = average;
+    
+    // Generate pie slices
+    let currentAngle = -90; // Start from top
+    const centerX = 150;
+    const centerY = 150;
+    const radius = 100;
+    
+    currentSatisfactionData.forEach((item, index) => {
+        const sliceAngle = (item.percentage / 100) * 360;
+        const startAngle = currentAngle;
+        const endAngle = currentAngle + sliceAngle;
+        
+        // Convert angles to radians
+        const startRad = (startAngle * Math.PI) / 180;
+        const endRad = (endAngle * Math.PI) / 180;
+        
+        // Calculate arc coordinates
+        const x1 = centerX + radius * Math.cos(startRad);
+        const y1 = centerY + radius * Math.sin(startRad);
+        const x2 = centerX + radius * Math.cos(endRad);
+        const y2 = centerY + radius * Math.sin(endRad);
+        
+        // Determine if arc is large
+        const largeArc = sliceAngle > 180 ? 1 : 0;
+        
+        // Create path
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        const pathData = `M ${centerX} ${centerY} L ${x1} ${y1} A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+        
+        path.setAttribute('d', pathData);
+        path.setAttribute('fill', item.color);
+        path.setAttribute('stroke', 'white');
+        path.setAttribute('stroke-width', '2');
+        path.style.cursor = 'pointer';
+        path.style.transition = 'transform 0.2s ease';
+        
+        // Add hover effects
+        path.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.05)';
+            this.style.transformOrigin = `${centerX}px ${centerY}px`;
+            showTooltip(event, `${item.count} responses (${item.percentage}%)`, `${item.rating} Star${item.rating > 1 ? 's' : ''}`);
+        });
+        
+        path.addEventListener('mouseleave', function() {
+            this.style.transform = 'scale(1)';
+            hideTooltip();
+        });
+        
+        svg.appendChild(path);
+        currentAngle = endAngle;
+        
+        // Create legend item
+        const legendItem = document.createElement('div');
+        legendItem.className = 'pie-legend-item';
+        
+        const colorBox = document.createElement('div');
+        colorBox.className = 'pie-legend-color';
+        colorBox.style.backgroundColor = item.color;
+        
+        const textDiv = document.createElement('div');
+        textDiv.className = 'pie-legend-text';
+        
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'pie-legend-label';
+        labelDiv.textContent = `${item.rating} Star${item.rating > 1 ? 's' : ''}`;
+        
+        const valueDiv = document.createElement('div');
+        valueDiv.className = 'pie-legend-value';
+        valueDiv.textContent = `${item.count} responses (${item.percentage}%)`;
+        
+        textDiv.appendChild(labelDiv);
+        textDiv.appendChild(valueDiv);
+        legendItem.appendChild(colorBox);
+        legendItem.appendChild(textDiv);
+        legend.appendChild(legendItem);
+    });
+    
+    // Update satisfaction stats
+    updateSatisfactionStats(currentSatisfactionData, total);
+}
+
+// Update satisfaction statistics
+function updateSatisfactionStats(data, total) {
+    const highSatisfaction = data.filter(item => item.rating >= 4).reduce((sum, item) => sum + item.count, 0);
+    const highSatisfactionPercentage = ((highSatisfaction / total) * 100).toFixed(0);
+    
+    const satisfactionStats = document.querySelector('.satisfaction-stats');
+    satisfactionStats.innerHTML = `
+        <div class="satisfaction-stat-card">
+            <div class="satisfaction-stat-label">Total Responses</div>
+            <div class="satisfaction-stat-value">${total}</div>
+            <div class="satisfaction-stat-count">this period</div>
+        </div>
+        <div class="satisfaction-stat-card">
+            <div class="satisfaction-stat-label">Highly Satisfied</div>
+            <div class="satisfaction-stat-value">${highSatisfactionPercentage}%</div>
+            <div class="satisfaction-stat-count">4-5 star ratings</div>
+        </div>
+    `;
+}
+
+// Update analytics chart based on selections
+function updateAnalyticsChart() {
+    currentAnalyticsChart = document.getElementById('analyticsChart').value;
+    currentAppointmentType = document.getElementById('appointmentType').value;
+    currentClinic = document.getElementById('clinicFilter').value;
+    
+    // Show/hide clinic filter based on appointment type
+    const clinicFilterGroup = document.getElementById('clinicFilterGroup');
+    if (currentAppointmentType === 'clinics') {
+        clinicFilterGroup.style.display = 'block';
+    } else {
+        clinicFilterGroup.style.display = 'none';
+        currentClinic = 'all';
+        document.getElementById('clinicFilter').value = 'all';
+    }
+    
+    generateAnalyticsChart();
+}
+
+// Update analytics timeframe
+function updateAnalyticsTimeframe(timeframe) {
+    currentAnalyticsTimeframe = timeframe;
+    
+    // Update active button
+    const analyticsSection = document.querySelector('.appointment-analytics-section');
+    analyticsSection.querySelectorAll('.date-filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    analyticsSection.querySelector(`[data-period="${timeframe}"]`).classList.add('active');
+    
+    generateAnalyticsChart();
+}
+
+// Generate analytics chart
+function generateAnalyticsChart() {
+    const chartType = currentAnalyticsChart;
+    const timeframe = currentAnalyticsTimeframe;
+    const appointmentType = currentAppointmentType;
+    const clinic = currentClinic;
+    
+    // Get data based on selections
+    let data = [];
+    if (appointmentAnalyticsData[chartType] && 
+        appointmentAnalyticsData[chartType][timeframe] && 
+        appointmentAnalyticsData[chartType][timeframe][appointmentType] &&
+        appointmentAnalyticsData[chartType][timeframe][appointmentType][clinic]) {
+        data = appointmentAnalyticsData[chartType][timeframe][appointmentType][clinic];
+    }
+    
+    if (data.length === 0) {
+        // Handle no data case
+        document.getElementById('analyticsChartSvg').innerHTML = '<text x="200" y="100" text-anchor="middle" fill="#666" font-size="14">No data available for selected filters</text>';
+        return;
+    }
+    
+    // Update subtitle based on chart type
+    const subtitles = {
+        appointments: 'Track appointment volume trends over time',
+        noshow: 'Monitor no-show rates to improve scheduling efficiency',
+        duration: 'Analyze average appointment duration patterns'
+    };
+    document.getElementById('analyticsSubtitle').textContent = subtitles[chartType];
+    
+    // Generate Y-axis labels
+    const values = data.map(d => d.value);
+    const maxValue = Math.max(...values);
+    const minValue = Math.min(...values);
+    let yAxisMax, yAxisMin, step;
+    
+    if (chartType === 'noshow') {
+        yAxisMax = Math.ceil(maxValue / 5) * 5;
+        yAxisMin = 0;
+        step = yAxisMax / 5;
+    } else if (chartType === 'duration') {
+        yAxisMax = Math.ceil(maxValue / 10) * 10;
+        yAxisMin = Math.floor(minValue / 10) * 10;
+        step = (yAxisMax - yAxisMin) / 5;
+    } else {
+        yAxisMax = Math.ceil(maxValue / 10) * 10;
+        yAxisMin = 0;
+        step = yAxisMax / 5;
+    }
+    
+    // Update Y-axis
+    const yAxis = document.getElementById('analyticsYAxis');
+    yAxis.innerHTML = '';
+    for (let i = yAxisMax; i >= yAxisMin; i -= step) {
+        const label = document.createElement('div');
+        label.className = 'analytics-y-label';
+        label.textContent = chartType === 'noshow' ? `${i}%` : 
+                           chartType === 'duration' ? `${i}min` : i;
+        yAxis.appendChild(label);
+    }
+    
+    // Update X-axis
+    const xAxis = document.getElementById('analyticsXAxis');
+    xAxis.innerHTML = '';
+    data.forEach(item => {
+        const label = document.createElement('div');
+        label.className = 'analytics-x-label';
+        label.textContent = timeframe === 'week' ? 
+            new Date(item.date).toLocaleDateString('en-US', { weekday: 'short' }) : 
+            item.date;
+        xAxis.appendChild(label);
+    });
+    
+    // Generate chart based on type
+    const svg = document.getElementById('analyticsChartSvg');
+    svg.innerHTML = '';
+    
+    const pointsCount = data.length;
+    const xStep = pointsCount > 1 ? 400 / (pointsCount - 1) : 200;
+    
+    if (chartType === 'appointments') {
+        // Area chart for appointments
+        generateAreaChart(svg, data, xStep, yAxisMin, yAxisMax);
+    } else if (chartType === 'duration') {
+        // Bar chart for duration
+        generateDurationBarChart(svg, data, xStep, yAxisMin, yAxisMax);
+    } else {
+        // Line chart for no-show rate
+        generateLineChart(svg, data, xStep, yAxisMin, yAxisMax, '#dc2626');
+    }
+    
+    // Update stats
+    updateAnalyticsStats(data, chartType);
+}
+
+// Generate area chart
+function generateAreaChart(svg, data, xStep, yAxisMin, yAxisMax) {
+    const range = yAxisMax - yAxisMin;
+    
+    // If appointment type is "both", show two lines (online and clinics)
+    if (currentAppointmentType === 'both') {
+        const onlineData = appointmentAnalyticsData[currentAnalyticsChart][currentAnalyticsTimeframe]['online']['all'];
+        const clinicsData = appointmentAnalyticsData[currentAnalyticsChart][currentAnalyticsTimeframe]['clinics']['all'];
+        
+        // Create area for online appointments
+        let onlineAreaPath = `M 0,200`;
+        onlineData.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            onlineAreaPath += ` L ${x},${y}`;
+        });
+        onlineAreaPath += ` L ${(onlineData.length - 1) * xStep},200 Z`;
+        
+        const onlineArea = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        onlineArea.setAttribute('d', onlineAreaPath);
+        onlineArea.setAttribute('fill', 'rgba(14, 165, 233, 0.1)');
+        onlineArea.setAttribute('stroke', 'none');
+        svg.appendChild(onlineArea);
+        
+        // Create area for clinic appointments
+        let clinicsAreaPath = `M 0,200`;
+        clinicsData.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            clinicsAreaPath += ` L ${x},${y}`;
+        });
+        clinicsAreaPath += ` L ${(clinicsData.length - 1) * xStep},200 Z`;
+        
+        const clinicsArea = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        clinicsArea.setAttribute('d', clinicsAreaPath);
+        clinicsArea.setAttribute('fill', 'rgba(34, 197, 94, 0.1)');
+        clinicsArea.setAttribute('stroke', 'none');
+        svg.appendChild(clinicsArea);
+        
+        // Create online line
+        let onlineLinePath = '';
+        onlineData.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            onlineLinePath += index === 0 ? `M ${x},${y}` : ` L ${x},${y}`;
+        });
+        
+        const onlineLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        onlineLine.setAttribute('d', onlineLinePath);
+        onlineLine.setAttribute('fill', 'none');
+        onlineLine.setAttribute('stroke', '#0ea5e9');
+        onlineLine.setAttribute('stroke-width', '3');
+        svg.appendChild(onlineLine);
+        
+        // Create clinics line
+        let clinicsLinePath = '';
+        clinicsData.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            clinicsLinePath += index === 0 ? `M ${x},${y}` : ` L ${x},${y}`;
+        });
+        
+        const clinicsLine = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        clinicsLine.setAttribute('d', clinicsLinePath);
+        clinicsLine.setAttribute('fill', 'none');
+        clinicsLine.setAttribute('stroke', '#22c55e');
+        clinicsLine.setAttribute('stroke-width', '3');
+        svg.appendChild(clinicsLine);
+        
+        // Create online points
+        onlineData.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.setAttribute('r', '4');
+            circle.setAttribute('fill', '#0ea5e9');
+            circle.style.cursor = 'pointer';
+            circle.addEventListener('mouseenter', (e) => 
+                showTooltip(e, `${item.value} online appointments`, formatAnalyticsDate(item.date))
+            );
+            circle.addEventListener('mouseleave', hideTooltip);
+            svg.appendChild(circle);
+        });
+        
+        // Create clinics points
+        clinicsData.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.setAttribute('r', '4');
+            circle.setAttribute('fill', '#22c55e');
+            circle.style.cursor = 'pointer';
+            circle.addEventListener('mouseenter', (e) => 
+                showTooltip(e, `${item.value} clinic appointments`, formatAnalyticsDate(item.date))
+            );
+            circle.addEventListener('mouseleave', hideTooltip);
+            svg.appendChild(circle);
+        });
+        
+        // Add legend for dual lines
+        addAnalyticsLegend();
+        
+    } else {
+        // Single line for online or clinics only
+        // Create area path
+        let areaPath = `M 0,200`;
+        data.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            areaPath += ` L ${x},${y}`;
+        });
+        areaPath += ` L ${(data.length - 1) * xStep},200 Z`;
+        
+        const areaColor = currentAppointmentType === 'online' ? 'rgba(14, 165, 233, 0.1)' : 'rgba(34, 197, 94, 0.1)';
+        const lineColor = currentAppointmentType === 'online' ? '#0ea5e9' : '#22c55e';
+        
+        const area = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        area.setAttribute('d', areaPath);
+        area.setAttribute('fill', areaColor);
+        area.setAttribute('stroke', 'none');
+        svg.appendChild(area);
+        
+        // Create line
+        let linePath = '';
+        data.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            linePath += index === 0 ? `M ${x},${y}` : ` L ${x},${y}`;
+        });
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        line.setAttribute('d', linePath);
+        line.setAttribute('fill', 'none');
+        line.setAttribute('stroke', lineColor);
+        line.setAttribute('stroke-width', '3');
+        svg.appendChild(line);
+        
+        // Create points
+        data.forEach((item, index) => {
+            const x = index * xStep;
+            const y = 200 - ((item.value - yAxisMin) / range) * 200;
+            
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.setAttribute('r', '4');
+            circle.setAttribute('fill', lineColor);
+            circle.style.cursor = 'pointer';
+            circle.addEventListener('mouseenter', (e) => 
+                showTooltip(e, `${item.value} appointments`, formatAnalyticsDate(item.date))
+            );
+            circle.addEventListener('mouseleave', hideTooltip);
+            svg.appendChild(circle);
+        });
+        
+        // Remove legend for single line
+        removeAnalyticsLegend();
+    }
+}
+
+// Generate line chart
+function generateLineChart(svg, data, xStep, yAxisMin, yAxisMax, color) {
+    const range = yAxisMax - yAxisMin;
+    
+    // Create line
+    let linePath = '';
+    data.forEach((item, index) => {
+        const x = index * xStep;
+        const y = 200 - ((item.value - yAxisMin) / range) * 200;
+        linePath += index === 0 ? `M ${x},${y}` : ` L ${x},${y}`;
+    });
+    
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    line.setAttribute('d', linePath);
+    line.setAttribute('fill', 'none');
+    line.setAttribute('stroke', color);
+    line.setAttribute('stroke-width', '3');
+    svg.appendChild(line);
+    
+    // Create points
+    data.forEach((item, index) => {
+        const x = index * xStep;
+        const y = 200 - ((item.value - yAxisMin) / range) * 200;
+        
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', '4');
+        circle.setAttribute('fill', color);
+        circle.style.cursor = 'pointer';
+        circle.addEventListener('mouseenter', (e) => 
+            showTooltip(e, `${item.value}%`, formatAnalyticsDate(item.date))
+        );
+        circle.addEventListener('mouseleave', hideTooltip);
+        svg.appendChild(circle);
+    });
+}
+
+// Generate duration bar chart
+function generateDurationBarChart(svg, data, xStep, yAxisMin, yAxisMax) {
+    const range = yAxisMax - yAxisMin;
+    const barWidth = Math.min(30, xStep * 0.6);
+    
+    data.forEach((item, index) => {
+        const x = index * xStep - barWidth / 2;
+        const barHeight = ((item.value - yAxisMin) / range) * 200;
+        const y = 200 - barHeight;
+        
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', barWidth);
+        rect.setAttribute('height', barHeight);
+        rect.setAttribute('fill', '#1a1a1a');
+        rect.setAttribute('rx', '2');
+        rect.style.cursor = 'pointer';
+        rect.addEventListener('mouseenter', (e) => 
+            showTooltip(e, `${item.value} minutes`, formatAnalyticsDate(item.date))
+        );
+        rect.addEventListener('mouseleave', hideTooltip);
+        svg.appendChild(rect);
+    });
+}
+
+// Format date for analytics
+function formatAnalyticsDate(dateString) {
+    if (dateString.includes('Week')) {
+        return dateString;
+    }
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+// Update analytics stats
+function updateAnalyticsStats(data, chartType) {
+    const statsContainer = document.getElementById('analyticsStats');
+    const values = data.map(d => d.value);
+    const total = values.reduce((sum, val) => sum + val, 0);
+    const average = (total / values.length).toFixed(1);
+    const max = Math.max(...values);
+    const min = Math.min(...values);
+    
+    let stats = [];
+    
+    if (chartType === 'appointments') {
+        stats = [
+            { label: 'Daily Average', value: average, count: 'appointments/day' },
+            { label: 'Peak Day', value: max, count: 'appointments' }
+        ];
+    } else if (chartType === 'noshow') {
+        stats = [
+            { label: 'Average No-Show Rate', value: `${average}%`, count: 'this period' },
+            { label: 'Highest Rate', value: `${max}%`, count: 'single day' }
+        ];
+    } else if (chartType === 'duration') {
+        stats = [
+            { label: 'Average Duration', value: `${average} min`, count: 'this period' },
+            { label: 'Longest Average', value: `${max} min`, count: 'single day' },
+            { label: 'Shortest Average', value: `${min} min`, count: 'single day' }
+        ];
+    }
+    
+    statsContainer.innerHTML = '';
+    stats.forEach(stat => {
+        const card = document.createElement('div');
+        card.className = 'analytics-stat-card';
+        card.innerHTML = `
+            <div class="analytics-stat-label">${stat.label}</div>
+            <div class="analytics-stat-value">${stat.value}</div>
+            <div class="analytics-stat-count">${stat.count}</div>
+        `;
+        statsContainer.appendChild(card);
+    });
+}
+
+// Add analytics legend for dual lines
+function addAnalyticsLegend() {
+    // Check if legend already exists
+    let legend = document.querySelector('.analytics-chart-legend');
+    if (!legend) {
+        legend = document.createElement('div');
+        legend.className = 'analytics-chart-legend';
+        legend.style.cssText = `
+            display: flex;
+            gap: 24px;
+            margin-bottom: 16px;
+            justify-content: center;
+        `;
+        
+        // Insert before the chart container
+        const chartContainer = document.querySelector('.analytics-chart-container');
+        chartContainer.parentNode.insertBefore(legend, chartContainer);
+    }
+    
+    legend.innerHTML = `
+        <div class="legend-item">
+            <div class="legend-color" style="background: #0ea5e9;"></div>
+            <span>Online Appointments</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #22c55e;"></div>
+            <span>Clinic Appointments</span>
+        </div>
+    `;
+}
+
+// Remove analytics legend
+function removeAnalyticsLegend() {
+    const legend = document.querySelector('.analytics-chart-legend');
+    if (legend) {
+        legend.remove();
+    }
+}
+
+// Initialize dashboard
+document.addEventListener('DOMContentLoaded', function() {
+    setCurrentDate();
+    animateStats();
+    initializePatientSearch(); // Initialize patient search
+    generateChart(); // Initialize the line chart
+    generateBarChart(); // Initialize the bar chart
+    generatePieChart(); // Initialize the pie chart
+    generateAnalyticsChart(); // Initialize the analytics chart
+    
+    // Update date every minute
+    setInterval(setCurrentDate, 60000);
+    
+    console.log('Dashboard loaded successfully');
+});
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97214bd48431402e',t:'MTc1NTY4NjY3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,982 @@
+.container {
+    height: calc(100vh - 100px);
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Main Content */
+.mainContent {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Stats Grid */
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.statCard {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s;
+}
+
+.statCard:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.statHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.statIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.statIcon.patients {
+    background: #1a1a1a;
+}
+
+.statIcon.satisfaction {
+    background: #16a34a;
+}
+
+.statIcon.appointments {
+    background: #0ea5e9;
+}
+
+.statTitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.statValue {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.statChange {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.statChange.positive {
+    color: #16a34a;
+}
+
+.statChange.negative {
+    color: #dc2626;
+}
+
+.statChange.neutral {
+    color: #666;
+}
+
+/* Charts Container */
+.chartsContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+}
+
+/* Chart Section */
+.chartSection {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Analytics Controls */
+.analyticsControls {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.analyticsChartContainer {
+    margin-bottom: 24px;
+}
+
+.analyticsChartArea {
+    position: relative;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.analyticsChartMain {
+    display: flex;
+    flex: 1;
+}
+
+.analyticsYAxis {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.analyticsYLabel {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.analyticsChartGrid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.analyticsChartSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.analyticsXAxis {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-left: 40px;
+}
+
+.analyticsXLabel {
+    font-size: 12px;
+    color: #666;
+}
+
+.analyticsStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.analyticsStatCard {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.analyticsStatLabel {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.analyticsStatValue {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.analyticsStatCount {
+    font-size: 11px;
+    color: #888;
+}
+
+.chartHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.chartHeader h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.chartSubtitle {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+.chartControls {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+}
+
+.controlGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.controlGroup label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+
+.vitalCheckboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.checkboxLabel input[type="checkbox"] {
+    display: none;
+}
+
+.checkmark {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 2px solid #e5e7eb;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.checkmark.bloodPressure {
+    border-color: #dc2626;
+}
+
+.checkmark.heartRate {
+    border-color: #0ea5e9;
+}
+
+.checkmark.temperature {
+    border-color: #16a34a;
+}
+
+.checkmark.bloodSugar {
+    border-color: #f59e0b;
+}
+
+.checkmark.oxygen {
+    border-color: #8b5cf6;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .checkmark {
+    background-color: currentColor;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .checkmark.bloodPressure {
+    background-color: #dc2626;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .checkmark.heartRate {
+    background-color: #0ea5e9;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .checkmark.temperature {
+    background-color: #16a34a;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .checkmark.bloodSugar {
+    background-color: #f59e0b;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .checkmark.oxygen {
+    background-color: #8b5cf6;
+}
+
+.checkboxLabel input[type="checkbox"]:checked + .checkmark::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+#patientSearch, #vitalSelect, #analyticsChart, #appointmentType, #clinicFilter {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    background: white;
+    width: 200px;
+    cursor: pointer;
+}
+
+#patientSearch:focus, #vitalSelect:focus, #analyticsChart:focus, #appointmentType:focus, #clinicFilter:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+.patientSearchContainer {
+    position: relative;
+}
+
+.patientDropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.patientDropdown.show {
+    display: block;
+}
+
+.patientOption {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.patientOption:hover {
+    background-color: #f8f9fa;
+}
+
+.patientOption.selected {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+.patientOption.hidden {
+    display: none;
+}
+
+.timeRange {
+    display: flex;
+    gap: 4px;
+}
+
+.timeBtn {
+    padding: 6px 12px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.timeBtn.active {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a;
+}
+
+.timeBtn:hover {
+    background: #f8f9fa;
+}
+
+.chartContainer {
+    margin-bottom: 24px;
+}
+
+.chartLegend {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+.legendColor {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.legendColor.bloodPressure {
+    background: #dc2626;
+}
+
+.legendColor.heartRate {
+    background: #0ea5e9;
+}
+
+.legendColor.temperature {
+    background: #16a34a;
+}
+
+.legendColor.bloodSugar {
+    background: #f59e0b;
+}
+
+.legendColor.oxygen {
+    background: #8b5cf6;
+}
+
+.chartArea {
+    position: relative;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chartMain {
+    display: flex;
+    flex: 1;
+}
+
+.yAxis {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.yLabel {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.chartGrid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+}
+
+.gridLine {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #f8f9fa;
+}
+
+.chartSvg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.xAxis {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-left: 40px;
+}
+
+.xLabel {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Current Readings */
+.currentReadings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.readingCard {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.readingLabel {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.readingValue {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.readingStatus {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.readingStatus.normal {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.readingStatus.warning {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.readingStatus.critical {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+/* Bar Chart Styles */
+.barChartContainer {
+    margin-bottom: 24px;
+}
+
+.barChartArea {
+    position: relative;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.barChartMain {
+    display: flex;
+    flex: 1;
+}
+
+.barYAxis {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.barYLabel {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.barChartGrid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 20px 10px 10px 10px;
+    background: #fafafa;
+    height: 280px;
+}
+
+.barItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 80px;
+    position: relative;
+}
+
+.bar {
+    width: 100%;
+    max-width: 50px;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.bar:hover {
+    background: linear-gradient(135deg, #333, #555);
+    transform: translateY(-2px);
+}
+
+.barValue {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a1a1a;
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bar:hover .barValue {
+    opacity: 1;
+}
+
+.barXAxis {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 10px 0 50px;
+}
+
+.barXLabel {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    max-width: 80px;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+/* Date Filter Styles */
+
+.dateFilterGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dateFilterGroup label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+
+.dateFilterButtons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.dateFilterBtn {
+    padding: 8px 16px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #666;
+}
+
+.dateFilterBtn:hover {
+    background: #f8f9fa;
+    border-color: #d1d5db;
+}
+
+.dateFilterBtn.active {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a;
+}
+
+/* Concern Stats */
+.concernStats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.concernStatCard {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.concernStatLabel {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.concernStatValue {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.concernStatCount {
+    font-size: 11px;
+    color: #888;
+}
+
+/* Pie Chart Styles */
+.pieChartContainer {
+    margin-bottom: 24px;
+}
+
+.pieChartArea {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    justify-content: center;
+}
+
+.pieChartWrapper {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+.pieChartSvg {
+    width: 100%;
+    height: 100%;
+}
+
+.pieChartCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.averageRating {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.averageLabel {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.pieLegend {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pieLegendItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+}
+
+.pieLegendColor {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    flex-shrink: 0;
+}
+
+.pieLegendText {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pieLegendLabel {
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.pieLegendValue {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Satisfaction Stats */
+.satisfactionStats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.satisfactionStatCard {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.satisfactionStatLabel {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.satisfactionStatValue {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.satisfactionStatCount {
+    font-size: 11px;
+    color: #888;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .mainContent {
+        padding: 16px;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .chartsContainer {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .chartHeader {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .chartControls {
+        justify-content: space-between;
+    }
+
+    .chartLegend {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .yAxis, .barYAxis {
+        width: 30px;
+    }
+
+    .currentReadings {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .concernStats {
+        grid-template-columns: 1fr;
+    }
+
+    .pieChartArea {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .pieLegend {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .statCard {
+        padding: 16px;
+    }
+
+    .chartSection {
+        padding: 16px;
+    }
+
+    .currentReadings {
+        grid-template-columns: 1fr;
+    }
+}
