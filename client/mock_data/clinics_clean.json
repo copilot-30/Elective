@@ -1,0 +1,5 @@
+[
+  {"id": "clinic1", "name": "Cardiology"},
+  {"id": "clinic2", "name": "Orthopedics"},  
+  {"id": "clinic3", "name": "Pediatrics"}
+]
