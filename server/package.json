@@ -4,11 +4,18 @@
   "main": "app.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "start-r": "cd R && Rscript server.R"
   },
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "http-proxy-middleware": "^2.0.9",
     "openai": "^4.104.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
