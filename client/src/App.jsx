@@ -16,7 +16,7 @@ import Appointments from './pages/doctor/appointments/Appointments';
 import Patients from './pages/doctor/patients/Patients';
 import Chat from './pages/doctor/chat/Doctorchat';
 
-import Analytics from './pages/doctor/Analytics';
+import Analytics from './pages/doctor/Analytics/Analytics';
 
 import MyClinic from './pages/doctor/myclinic/MyClinic';
 import Invitations from './pages/doctor/Invitations';
