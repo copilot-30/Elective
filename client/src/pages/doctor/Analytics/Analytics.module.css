@@ -88,7 +88,6 @@
     font-size: 32px;
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 8px;
 }
 
 .statChange {
@@ -135,6 +134,14 @@
     gap: 24px;
     align-items: flex-end;
     flex-wrap: wrap;
+}
+
+.chartTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    text-align: center;
 }
 
 .analyticsChartContainer {
@@ -979,4 +986,60 @@ select {
     .currentReadings {
         grid-template-columns: 1fr;
     }
+}
+
+/* Additional styles for JSX component */
+.select {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    background: white;
+    width: 200px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+.select:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+.chartTooltip {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+}
+
+.tooltipLabel {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #1a1a1a;
+}
+
+.averageRating {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.averageValue {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.averageLabel {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
 }
