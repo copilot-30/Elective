@@ -11,65 +11,25 @@ import styles from '../Analytics.module.css';
 const PatientSatisfaction = () => {
   const [currentSatisfactionPeriod, setCurrentSatisfactionPeriod] = useState('overall');
   const [satisfactionData, setSatisfactionData] = useState([]);
+  const [error, setError] = useState(null);
 
   // Fetch satisfaction data from backend
   const fetchSatisfactionData = async (period) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`/api/dashboard/satisfaction?period=${period}`, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-
+      const response = await fetch(`http://localhost:8000/api/patient-satisfaction?period=${period}`);
       if (response.ok) {
         const data = await response.json();
         setSatisfactionData(data.ratings || []);
+        setError(null);
       } else {
-        // Fallback to mock data if API fails
-        setSatisfactionData(getMockSatisfactionData(period));
+        setSatisfactionData([]);
+        setError('Error: Unable to connect to analytics server');
       }
     } catch (error) {
       console.error('Error fetching satisfaction data:', error);
-      // Fallback to mock data on error
-      setSatisfactionData(getMockSatisfactionData(period));
+      setSatisfactionData([]);
+      setError('Error: Unable to connect to analytics server');
     }
-  };
-
-  // Mock data for satisfaction (fallback)
-  const getMockSatisfactionData = (period) => {
-    const mockData = {
-      'overall': [
-        { rating: 5, count: 1245, percentage: 68.2, color: '#16a34a' },
-        { rating: 4, count: 398, percentage: 21.8, color: '#65a30d' },
-        { rating: 3, count: 112, percentage: 6.1, color: '#f59e0b' },
-        { rating: 2, count: 45, percentage: 2.5, color: '#f97316' },
-        { rating: 1, count: 25, percentage: 1.4, color: '#dc2626' }
-      ],
-      '7days': [
-        { rating: 5, count: 48, percentage: 75.0, color: '#16a34a' },
-        { rating: 4, count: 10, percentage: 15.6, color: '#65a30d' },
-        { rating: 3, count: 4, percentage: 6.3, color: '#f59e0b' },
-        { rating: 2, count: 2, percentage: 3.1, color: '#f97316' },
-        { rating: 1, count: 0, percentage: 0.0, color: '#dc2626' }
-      ],
-      'thismonth': [
-        { rating: 5, count: 180, percentage: 60.0, color: '#16a34a' },
-        { rating: 4, count: 90, percentage: 30.0, color: '#65a30d' },
-        { rating: 3, count: 20, percentage: 6.7, color: '#f59e0b' },
-        { rating: 2, count: 7, percentage: 2.3, color: '#f97316' },
-        { rating: 1, count: 3, percentage: 1.0, color: '#dc2626' }
-      ],
-      'last3months': [
-        { rating: 5, count: 620, percentage: 62.0, color: '#16a34a' },
-        { rating: 4, count: 250, percentage: 25.0, color: '#65a30d' },
-        { rating: 3, count: 80, percentage: 8.0, color: '#f59e0b' },
-        { rating: 2, count: 35, percentage: 3.5, color: '#f97316' },
-        { rating: 1, count: 15, percentage: 1.5, color: '#dc2626' }
-      ]
-    };
-    return mockData[period] || mockData['overall'];
   };
 
   // Update satisfaction chart based on selected period
@@ -90,7 +50,7 @@ const PatientSatisfaction = () => {
           <label>Time Period:</label>
           <div className={styles.dateFilterButtons}>
             {[
-              { key: 'overall', label: 'Overall' },
+              { key: 'overall', label: 'All Time' },
               { key: '7days', label: 'Last 7 Days' },
               { key: 'thismonth', label: 'This Month' },
               { key: 'last3months', label: 'Last 3 Months' }
@@ -108,7 +68,9 @@ const PatientSatisfaction = () => {
       </div>
 
       <div className={styles.chartContainer}>
-        {satisfactionData.length > 0 ? (
+        {error ? (
+          <div className={styles.error}>{error}</div>
+        ) : satisfactionData.length > 0 ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '24px' }}>
             {/* Pie Chart with Average Rating Inside */}
             <div style={{ flex: '0 0 400px', position: 'relative' }}>

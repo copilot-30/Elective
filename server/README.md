@@ -137,7 +137,7 @@ POST /api/google-meet/create
 
 The API uses mock data from:
 ```
-client/mock_data/full_appointments_database.json
+client/mock_data/appointments_cleaned.json
 ```
 
 This file contains:
@@ -189,7 +189,7 @@ curl "http://localhost:5000/api/r/patient-satisfaction?period=last3months"
 - Verify proxy configuration
 
 ### Data Issues
-- Ensure `client/mock_data/full_appointments_database.json` exists
+- Ensure `client/mock_data/appointments_cleaned.json` exists
 - Check file permissions
 - Verify JSON format is valid
 

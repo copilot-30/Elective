@@ -144,7 +144,7 @@ const PatientVitalTrends = () => {
           {payload.map((entry, index) => (
             <p key={index} style={{ color: entry.color }}>
               {entry.name}: {entry.value}
-              {selectedVital === 'temperature' && '°F'}
+              {selectedVital === 'temperature' && '°C'}
               {selectedVital === 'heart_rate' && ' bpm'}
               {selectedVital === 'oxygen' && '%'}
               {selectedVital === 'blood_sugar' && ' mg/dL'}

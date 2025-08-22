@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const appointmentsFile = 'full_appointments_database.json';
+const appointmentsFile = 'appointments_cleaned.json';
 let appointments = [];
 try {
   const raw = fs.readFileSync(appointmentsFile, 'utf8');

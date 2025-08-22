@@ -3,7 +3,7 @@
 
 # Load the data once when the API starts
 load_data <- function() {
-  appointments_path <- "../../client/mock_data/full_appointments_database.json"
+  appointments_path <- "../../client/mock_data/appointments_cleaned.json"
   patients_path <- "../../client/mock_data/patients_clean.json"
   
   if (file.exists(appointments_path) && file.exists(patients_path)) {
@@ -13,7 +13,7 @@ load_data <- function() {
     )
   } else {
     # Fallback paths
-    appointments_fallback <- "../client/mock_data/full_appointments_database.json"
+    appointments_fallback <- "../client/mock_data/appointments_cleaned.json"
     patients_fallback <- "../client/mock_data/patients_clean.json"
     
     if (file.exists(appointments_fallback) && file.exists(patients_fallback)) {

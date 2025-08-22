@@ -13,6 +13,7 @@ import styles from '../Analytics.module.css';
 const TopPatientConcerns = () => {
   const [currentPeriod, setCurrentPeriod] = useState('overall');
   const [concernsData, setConcernsData] = useState([]);
+  const [error, setError] = useState(null);
 
   // Fetch concerns data from R backend
   const fetchConcernsData = async (period) => {
@@ -37,14 +38,15 @@ const TopPatientConcerns = () => {
           color: getColorByIndex(index)
         })) || [];
         setConcernsData(transformedData);
+        setError(null);
       } else {
-        // Fallback to mock data if API fails
-        setConcernsData(getMockConcernsData(period));
+        setConcernsData([]);
+        setError('Error: Unable to connect to analytics server');
       }
     } catch (error) {
       console.error('Error fetching concerns data:', error);
-      // Fallback to mock data on error
-      setConcernsData(getMockConcernsData(period));
+      setConcernsData([]);
+      setError('Error: Unable to connect to analytics server');
     }
   };
 
@@ -52,44 +54,6 @@ const TopPatientConcerns = () => {
   const getColorByIndex = (index) => {
     const colors = ['#1a1a1a', '#333', '#555', '#777', '#999', '#bbb', '#ddd', '#2563eb', '#7c3aed', '#dc2626'];
     return colors[index % colors.length];
-  };
-
-  // Mock data for concerns (fallback)
-  const getMockConcernsData = (period) => {
-    const mockData = {
-      'overall': [
-        { concern: 'Anxiety', count: 156, color: '#1a1a1a' },
-        { concern: 'Sleep Issues', count: 134, color: '#333' },
-        { concern: 'Headaches', count: 98, color: '#555' },
-        { concern: 'Fatigue', count: 87, color: '#777' },
-        { concern: 'Back Pain', count: 72, color: '#999' },
-        { concern: 'Depression', count: 58, color: '#bbb' }
-      ],
-      '7days': [
-        { concern: 'Anxiety', count: 15, color: '#1a1a1a' },
-        { concern: 'Sleep Issues', count: 12, color: '#333' },
-        { concern: 'Headaches', count: 8, color: '#555' },
-        { concern: 'Fatigue', count: 6, color: '#777' },
-        { concern: 'Back Pain', count: 4, color: '#999' }
-      ],
-      'thismonth': [
-        { concern: 'Anxiety', count: 45, color: '#1a1a1a' },
-        { concern: 'Sleep Issues', count: 38, color: '#333' },
-        { concern: 'Headaches', count: 28, color: '#555' },
-        { concern: 'Fatigue', count: 22, color: '#777' },
-        { concern: 'Back Pain', count: 18, color: '#999' },
-        { concern: 'Depression', count: 15, color: '#bbb' }
-      ],
-      'last3months': [
-        { concern: 'Anxiety', count: 124, color: '#1a1a1a' },
-        { concern: 'Sleep Issues', count: 102, color: '#333' },
-        { concern: 'Headaches', count: 78, color: '#555' },
-        { concern: 'Fatigue', count: 65, color: '#777' },
-        { concern: 'Back Pain', count: 54, color: '#999' },
-        { concern: 'Depression', count: 43, color: '#bbb' }
-      ]
-    };
-    return mockData[period] || mockData['overall'];
   };
 
   // Update concerns chart based on selected period
@@ -128,7 +92,9 @@ const TopPatientConcerns = () => {
       </div>
 
       <div className={styles.chartContainer}>
-        {concernsData.length > 0 ? (
+        {error ? (
+          <div className={styles.error}>{error}</div>
+        ) : concernsData.length > 0 ? (
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={concernsData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />

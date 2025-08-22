@@ -1,47 +1,60 @@
 # Patient Satisfaction Endpoint
 # Handles patient satisfaction data processing and API endpoints
 
-#* Get patient satisfaction data
-#* @param period Time period filter (alltime, thismonth, last3months, last7days)
-#* @get /api/patient-satisfaction
-function(period = "last3months") {
+# Function to get patient satisfaction data
+get_patient_satisfaction <- function(period = "alltime") {
   current_date <- Sys.Date()
   
   # Filter data based on period
   filtered_data <- appointments_data
-  if (period == "thismonth") {
-    start_date <- floor_date(current_date, "month")
-    filtered_data <- appointments_data %>%
-      filter(as.Date(date) >= start_date)
-  } else if (period == "last3months") {
-    start_date <- current_date - 90
+  if (period == "last30days") {
+    start_date <- current_date - 30
     filtered_data <- appointments_data %>%
       filter(as.Date(date) >= start_date)
   } else if (period == "last7days") {
     start_date <- current_date - 7
     filtered_data <- appointments_data %>%
       filter(as.Date(date) >= start_date)
+  } else if (period == "last90days") {
+    start_date <- current_date - 90
+    filtered_data <- appointments_data %>%
+      filter(as.Date(date) >= start_date)
   }
+  # If period == "alltime", use all data (no filtering)
   
   # Calculate satisfaction statistics
-  satisfaction_data <- filtered_data %>%
+  satisfaction_ratings <- filtered_data %>%
     filter(!is.na(satisfaction) & satisfaction != "") %>%
     count(satisfaction, sort = FALSE) %>%
     mutate(
-      satisfaction = as.numeric(satisfaction),
-      percentage = round(n / sum(n) * 100, 1),
-      star_label = paste0(satisfaction, " Star", ifelse(satisfaction != 1, "s", "")),
-      response_text = paste0(star_label, " - ", format(n, big.mark = ","), " responses (", percentage, "%)")
+      rating = as.numeric(satisfaction),
+      count = n,
+      percentage = round(n / sum(n) * 100, 1)
     ) %>%
-    arrange(desc(satisfaction))
+    select(rating, count, percentage) %>%
+    arrange(desc(rating))
+  
+  # Add colors for frontend
+  color_map <- c("1" = "#dc2626", "2" = "#f97316", "3" = "#f59e0b", "4" = "#65a30d", "5" = "#16a34a")
+  satisfaction_ratings$color <- color_map[as.character(satisfaction_ratings$rating)]
   
   # Calculate average rating
-  avg_rating <- round(sum(satisfaction_data$satisfaction * satisfaction_data$n) / sum(satisfaction_data$n), 1)
+  total_responses <- sum(satisfaction_ratings$count)
+  avg_rating <- if(total_responses > 0) {
+    round(sum(satisfaction_ratings$rating * satisfaction_ratings$count) / total_responses, 1)
+  } else {
+    0
+  }
   
   return(list(
-    data = satisfaction_data,
+    ratings = satisfaction_ratings,
     average_rating = avg_rating,
-    total_responses = sum(satisfaction_data$n),
-    period = period
+    total_responses = total_responses,
+    period = period,
+    total_records = nrow(filtered_data),
+    date_range = list(
+      start = ifelse(nrow(filtered_data) > 0, as.character(min(as.Date(filtered_data$date), na.rm = TRUE)), NA),
+      end = ifelse(nrow(filtered_data) > 0, as.character(max(as.Date(filtered_data$date), na.rm = TRUE)), NA)
+    )
   ))
 }

@@ -44,6 +44,12 @@ source("endpoints/patients_clean.R", local = TRUE)
 # Load Patient Concerns module
 source("endpoints/patient_concerns_clean.R", local = TRUE)
 
+# Load Patient Satisfaction module
+source("endpoints/patient_satisfaction.R", local = TRUE)
+
+# Load Appointment Analytics module
+source("endpoints/appointment_analytics.R", local = TRUE)
+
 #* Get patient vital trends
 #* @param patient_id Patient ID to get vitals for
 #* @param vital_type Type of vital (blood_pressure, heart_rate, temperature, blood_sugar, oxygen, respiratory_rate, bmi)
@@ -64,6 +70,23 @@ function() {
 #* @get /api/patient-concerns
 function(period = "alltime", limit = 10) {
   get_patient_concerns(period, limit)
+}
+
+#* Get patient satisfaction data
+#* @param period Time period filter (alltime, last30days, last7days, last90days)
+#* @get /api/patient-satisfaction
+function(period = "alltime") {
+  get_patient_satisfaction(period)
+}
+
+#* Get appointment analytics data
+#* @param period Time period filter (overall, 7days, thismonth, last3months)
+#* @param chart Chart type (appointments, noshow, duration)
+#* @param type Appointment type filter (both, online, clinic)
+#* @param clinic Clinic filter (all, clinic1, clinic2, clinic3)
+#* @get /api/appointment-analytics
+function(period = "thismonth", chart = "appointments", type = "both", clinic = "all") {
+  get_appointment_analytics(period, chart, type, clinic)
 }
 
 #* Health check endpoint

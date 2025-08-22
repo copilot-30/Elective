@@ -7,7 +7,7 @@ library(plumber)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 # Create and run the API
-api <- plumb("api.R")
+api <- plumb("api_modular.R")
 
 # Configure the server
 api$setSerializer(plumber::serializer_json())

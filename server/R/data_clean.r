@@ -17,7 +17,7 @@ library(dplyr)
 library(here)
 
 # Define the path to the data file relative to the project root
-data_path <- here("client", "mock_data", "full_appointments_database.json")
+data_path <- here("client", "mock_data", "appointments_cleaned.json")
 
 # Load the dataset from the JSON file
 appointments_df <- fromJSON(data_path)
