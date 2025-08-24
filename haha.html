@@ -78,6 +78,93 @@
 
 
 
+            <!-- Doctor/Clinic Utilization Chart -->
+            <div class="chart-section full-width">
+                <div class="chart-header">
+                    <h2>Doctor/Clinic Utilization</h2>
+                    <div class="chart-controls">
+                        <div class="control-group">
+                            <label for="utilizationView">📊 View:</label>
+                            <select id="utilizationView" onchange="updateUtilizationView()">
+                                <option value="doctors">Most Visited Doctors</option>
+                                <option value="clinics">Most Visited Clinics</option>
+                                <option value="geography">Geographic Distribution</option>
+                                <option value="medications">💊 All Medications & Schedule</option>
+                            </select>
+                        </div>
+                        <div class="control-group" id="doctorFilterGroup">
+                            <label for="doctorFilter">👨‍⚕️ Select Doctor:</label>
+                            <select id="doctorFilter" onchange="updateDoctorFilter()">
+                                <option value="all">All Doctors</option>
+                            </select>
+                        </div>
+                        <div class="control-group" id="detailViewGroup" style="display: none;">
+                            <label for="detailView">📋 Show Details:</label>
+                            <select id="detailView" onchange="updateDetailView()">
+                                <option value="appointments">📅 Appointments & Concerns</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="utilization-chart-area" id="utilizationChartArea">
+                        <div class="utilization-chart-main">
+                            <div class="utilization-y-axis" id="utilizationYAxis">
+                                <!-- Y-axis labels will be dynamically generated -->
+                            </div>
+                            
+                            <div class="utilization-chart-grid" id="utilizationChartGrid">
+                                <!-- Bar chart will be dynamically generated -->
+                            </div>
+                        </div>
+                        
+                        <div class="utilization-x-axis" id="utilizationXAxis">
+                            <!-- X-axis labels will be dynamically generated -->
+                        </div>
+                    </div>
+                    
+                    <!-- Doctor Detail View -->
+                    <div class="doctor-detail-view" id="doctorDetailView" style="display: none;">
+                        <div class="doctor-detail-header">
+                            <h3 id="doctorDetailTitle">Dr. Martinez - Cardiology</h3>
+                            <div class="doctor-detail-summary">
+                                <span id="doctorDetailCount">12 appointments</span> • 
+                                <span id="doctorDetailLocation">Heart Center, Downtown</span>
+                            </div>
+                        </div>
+                        
+                        <div class="doctor-detail-content" id="doctorDetailContent">
+                            <!-- Appointments or medications will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Utilization Stats -->
+                <div class="utilization-stats" id="utilizationStats">
+                    <div class="utilization-stat-card">
+                        <div class="utilization-stat-label">Most Visited</div>
+                        <div class="utilization-stat-value" id="mostVisitedValue">Dr. Martinez</div>
+                        <div class="utilization-stat-count" id="mostVisitedCount">12 visits</div>
+                    </div>
+                    <div class="utilization-stat-card">
+                        <div class="utilization-stat-label">Avg Time Between</div>
+                        <div class="utilization-stat-value">18 days</div>
+                        <div class="utilization-stat-count">appointments</div>
+                    </div>
+                    <div class="utilization-stat-card">
+                        <div class="utilization-stat-label">Primary Location</div>
+                        <div class="utilization-stat-value" id="primaryLocationValue">Downtown</div>
+                        <div class="utilization-stat-count" id="primaryLocationCount">8 visits</div>
+                    </div>
+                    <div class="utilization-stat-card">
+                        <div class="utilization-stat-label">Total Providers</div>
+                        <div class="utilization-stat-value">7</div>
+                        <div class="utilization-stat-count">doctors & clinics</div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Vital Trends Chart -->
             <div class="chart-section full-width">
                 <div class="chart-header">
@@ -344,6 +431,29 @@
     box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
 }
 
+#utilizationView, #doctorFilter, #detailView {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    background: white;
+    width: 200px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+#utilizationView:focus, #doctorFilter:focus, #detailView:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
 /* Date Filter Styles */
 .date-filter-group {
     display: flex;
@@ -390,6 +500,399 @@
 
 
 
+
+/* Utilization Chart Styles */
+.utilization-chart-area {
+    position: relative;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+}
+
+.utilization-chart-main {
+    display: flex;
+    flex: 1;
+}
+
+.utilization-y-axis {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.utilization-y-label {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.utilization-chart-grid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 20px 10px 10px 10px;
+    background: #fafafa;
+    height: 280px;
+}
+
+.utilization-bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    max-width: 80px;
+    position: relative;
+}
+
+.utilization-bar {
+    width: 100%;
+    max-width: 50px;
+    background: linear-gradient(135deg, #1a1a1a, #333);
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.utilization-bar:hover {
+    background: linear-gradient(135deg, #333, #555);
+    transform: translateY(-2px);
+}
+
+.utilization-bar-value {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 600;
+    color: #1a1a1a;
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.utilization-bar:hover .utilization-bar-value {
+    opacity: 1;
+}
+
+.utilization-x-axis {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 10px 0 50px;
+}
+
+.utilization-x-label {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    max-width: 80px;
+    word-wrap: break-word;
+    line-height: 1.2;
+}
+
+.utilization-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.utilization-stat-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.utilization-stat-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.utilization-stat-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.utilization-stat-count {
+    font-size: 11px;
+    color: #888;
+}
+
+/* Doctor Detail View Styles */
+.doctor-detail-view {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 24px;
+    margin-top: 24px;
+}
+
+.doctor-detail-header {
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.doctor-detail-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 8px 0;
+}
+
+.doctor-detail-summary {
+    font-size: 14px;
+    color: #666;
+}
+
+.doctor-detail-content {
+    display: grid;
+    gap: 16px;
+}
+
+/* Appointment Chart Styles */
+.appointment-chart-container, .medication-chart-container {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.appointment-chart-header, .medication-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.appointment-chart-header h4, .medication-chart-header h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.appointment-chart-legend, .medication-chart-legend {
+    display: flex;
+    gap: 16px;
+}
+
+.appointment-chart-legend .legend-item, .medication-chart-legend .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #666;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+.legend-dot.completed {
+    background: #16a34a;
+}
+
+.legend-dot.upcoming {
+    background: #2563eb;
+}
+
+.legend-dot.morning {
+    background: #f59e0b;
+}
+
+.legend-dot.afternoon {
+    background: #0ea5e9;
+}
+
+.legend-dot.evening {
+    background: #8b5cf6;
+}
+
+.legend-dot.as-needed {
+    background: #6b7280;
+}
+
+.appointment-chart-area, .medication-chart-area {
+    display: flex;
+    height: 300px;
+    margin-bottom: 16px;
+}
+
+.appointment-y-axis, .medication-y-axis {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 0;
+}
+
+.appointment-y-label, .medication-y-label {
+    font-size: 11px;
+    color: #666;
+    text-align: right;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.appointment-chart-grid, .medication-chart-grid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.appointment-chart-svg, .medication-chart-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.appointment-x-axis, .medication-x-axis {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-left: 200px;
+}
+
+.appointment-x-label, .medication-x-label {
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    white-space: nowrap;
+}
+
+.appointment-item, .medication-item {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    transition: all 0.2s;
+}
+
+.appointment-item:hover, .medication-item:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.appointment-header, .medication-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.appointment-date, .medication-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.appointment-time, .medication-dosage {
+    font-size: 14px;
+    color: #666;
+}
+
+.appointment-concern, .medication-schedule {
+    font-size: 14px;
+    color: #333;
+    margin-top: 4px;
+}
+
+.appointment-status, .medication-frequency {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.appointment-status.completed {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.appointment-status.upcoming {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.medication-frequency {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.medication-instructions {
+    font-size: 12px;
+    color: #666;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.medication-duration-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.duration-stat {
+    text-align: center;
+}
+
+.duration-stat-label {
+    font-size: 10px;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 2px;
+}
+
+.duration-stat-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.duration-stat-value.warning {
+    color: #dc2626;
+}
+
+.duration-stat-value.caution {
+    color: #f59e0b;
+}
 
 /* Vital Chart Styles */
 .chart-container {
@@ -613,6 +1116,131 @@
 </style>
 
 <script>
+// Utilization data by view type
+const utilizationData = {
+    doctors: [
+        { name: 'Dr. Martinez', visits: 12, specialty: 'Cardiology', location: 'Heart Center, Downtown' },
+        { name: 'Dr. Johnson', visits: 8, specialty: 'Internal Medicine', location: 'Main Clinic, Midtown' },
+        { name: 'Dr. Smith', visits: 6, specialty: 'Endocrinology', location: 'Diabetes Center, Downtown' },
+        { name: 'Dr. Brown', visits: 4, specialty: 'Ophthalmology', location: 'Eye Institute, Uptown' },
+        { name: 'Dr. Davis', visits: 3, specialty: 'Dermatology', location: 'Skin Clinic, Westside' }
+    ],
+    clinics: [
+        { name: 'Heart Center', visits: 12, type: 'Cardiology' },
+        { name: 'Main Clinic', visits: 10, type: 'General Medicine' },
+        { name: 'Diabetes Center', visits: 6, type: 'Endocrinology' },
+        { name: 'Eye Institute', visits: 4, type: 'Ophthalmology' },
+        { name: 'Skin Clinic', visits: 3, type: 'Dermatology' }
+    ],
+    geography: [
+        { name: 'Downtown', visits: 18, distance: '2.1 mi' },
+        { name: 'Midtown', visits: 12, distance: '4.3 mi' },
+        { name: 'Uptown', visits: 8, distance: '6.7 mi' },
+        { name: 'Westside', visits: 4, distance: '8.2 mi' },
+        { name: 'Eastside', visits: 3, distance: '9.1 mi' }
+    ]
+};
+
+// Doctor appointments data
+const doctorAppointments = {
+    'Dr. Martinez': [
+        { date: '2024-05-15', time: '10:30 AM', concern: 'Routine Cardiology Check-up', status: 'upcoming' },
+        { date: '2024-04-18', time: '2:15 PM', concern: 'Blood Pressure Follow-up', status: 'completed' },
+        { date: '2024-03-22', time: '11:00 AM', concern: 'EKG Results Review', status: 'completed' },
+        { date: '2024-02-28', time: '9:45 AM', concern: 'Chest Pain Evaluation', status: 'completed' },
+        { date: '2024-01-15', time: '3:30 PM', concern: 'Annual Heart Health Screening', status: 'completed' },
+        { date: '2023-12-10', time: '1:20 PM', concern: 'Medication Adjustment', status: 'completed' }
+    ],
+    'Dr. Johnson': [
+        { date: '2024-04-25', time: '9:00 AM', concern: 'Annual Physical Exam', status: 'completed' },
+        { date: '2024-03-18', time: '2:30 PM', concern: 'Lab Results Discussion', status: 'completed' },
+        { date: '2024-02-14', time: '11:15 AM', concern: 'Flu Symptoms', status: 'completed' },
+        { date: '2024-01-08', time: '4:00 PM', concern: 'Preventive Care Visit', status: 'completed' }
+    ],
+    'Dr. Smith': [
+        { date: '2024-04-12', time: '8:30 AM', concern: 'Diabetes Management', status: 'completed' },
+        { date: '2024-03-05', time: '10:45 AM', concern: 'Blood Sugar Monitoring', status: 'completed' },
+        { date: '2024-01-22', time: '1:15 PM', concern: 'Insulin Adjustment', status: 'completed' }
+    ],
+    'Dr. Brown': [
+        { date: '2024-03-28', time: '3:45 PM', concern: 'Eye Exam', status: 'completed' },
+        { date: '2024-01-30', time: '11:30 AM', concern: 'Vision Changes', status: 'completed' }
+    ],
+    'Dr. Davis': [
+        { date: '2024-02-20', time: '2:00 PM', concern: 'Skin Lesion Check', status: 'completed' }
+    ]
+};
+
+// Doctor medications data with duration tracking
+const doctorMedications = {
+    'Dr. Martinez': [
+        { 
+            name: 'Lisinopril', 
+            dosage: '10mg', 
+            frequency: 'Once daily',
+            schedule: 'Morning with breakfast',
+            instructions: 'Take at the same time each day. Monitor blood pressure regularly.',
+            duration: 'Ongoing (chronic)',
+            daysRemaining: 23,
+            totalDays: 90,
+            refillsLeft: 2,
+            prescribedDate: '2024-02-15'
+        },
+        { 
+            name: 'Metoprolol', 
+            dosage: '25mg', 
+            frequency: 'Twice daily',
+            schedule: 'Morning and evening',
+            instructions: 'Take with food. Do not stop suddenly without consulting doctor.',
+            duration: 'Ongoing (chronic)',
+            daysRemaining: 18,
+            totalDays: 90,
+            refillsLeft: 1,
+            prescribedDate: '2024-02-20'
+        }
+    ],
+    'Dr. Johnson': [
+        { 
+            name: 'Multivitamin', 
+            dosage: '1 tablet', 
+            frequency: 'Once daily',
+            schedule: 'Morning with breakfast',
+            instructions: 'General health maintenance. Take with food for better absorption.',
+            duration: 'Ongoing (maintenance)',
+            daysRemaining: 45,
+            totalDays: 365,
+            refillsLeft: 5,
+            prescribedDate: '2023-12-01'
+        }
+    ],
+    'Dr. Smith': [
+        { 
+            name: 'Metformin', 
+            dosage: '500mg', 
+            frequency: 'Twice daily',
+            schedule: 'With breakfast and dinner',
+            instructions: 'Take with meals to reduce stomach upset. Monitor blood sugar levels.',
+            duration: 'Ongoing (chronic)',
+            daysRemaining: 12,
+            totalDays: 90,
+            refillsLeft: 0,
+            prescribedDate: '2024-02-05'
+        },
+        { 
+            name: 'Glipizide', 
+            dosage: '5mg', 
+            frequency: 'Once daily',
+            schedule: '30 minutes before breakfast',
+            instructions: 'Take before first meal of the day. Watch for signs of low blood sugar.',
+            duration: 'Ongoing (chronic)',
+            daysRemaining: 8,
+            totalDays: 90,
+            refillsLeft: 1,
+            prescribedDate: '2024-02-10'
+        }
+    ]
+};
+
 // Patient vital data over time
 const patientVitalData = {
     bloodPressure: [
@@ -676,6 +1304,9 @@ const patientVitalData = {
 
 let currentVitalTimeframe = '6months';
 let currentVital = 'bloodPressure';
+let currentUtilizationView = 'doctors';
+let selectedDoctor = 'all';
+let currentDetailView = 'appointments';
 
 // Format date for display
 function formatDate(dateString) {
@@ -687,6 +1318,576 @@ function formatDate(dateString) {
 }
 
 
+
+// Update utilization view
+function updateUtilizationView() {
+    currentUtilizationView = document.getElementById('utilizationView').value;
+    selectedDoctor = 'all';
+    
+    // Show/hide doctor filter based on view
+    const doctorFilterGroup = document.getElementById('doctorFilterGroup');
+    const detailViewGroup = document.getElementById('detailViewGroup');
+    
+    if (currentUtilizationView === 'doctors') {
+        doctorFilterGroup.style.display = 'flex';
+        populateDoctorFilter();
+        // Reset doctor filter to "All Doctors"
+        document.getElementById('doctorFilter').value = 'all';
+        detailViewGroup.style.display = 'none';
+        document.getElementById('doctorDetailView').style.display = 'none';
+        document.getElementById('utilizationChartArea').style.display = 'block';
+        document.getElementById('utilizationStats').style.display = 'grid';
+        generateUtilizationChart();
+        updateUtilizationStats();
+    } else if (currentUtilizationView === 'medications') {
+        doctorFilterGroup.style.display = 'none';
+        detailViewGroup.style.display = 'none';
+        document.getElementById('utilizationChartArea').style.display = 'none';
+        document.getElementById('utilizationStats').style.display = 'none';
+        document.getElementById('doctorDetailView').style.display = 'block';
+        showAllMedications();
+    } else {
+        doctorFilterGroup.style.display = 'none';
+        detailViewGroup.style.display = 'none';
+        document.getElementById('doctorDetailView').style.display = 'none';
+        document.getElementById('utilizationChartArea').style.display = 'block';
+        document.getElementById('utilizationStats').style.display = 'grid';
+        generateUtilizationChart();
+        updateUtilizationStats();
+    }
+}
+
+// Populate doctor filter dropdown
+function populateDoctorFilter() {
+    const doctorFilter = document.getElementById('doctorFilter');
+    doctorFilter.innerHTML = '<option value="all">All Doctors</option>';
+    
+    utilizationData.doctors.forEach(doctor => {
+        const option = document.createElement('option');
+        option.value = doctor.name;
+        option.textContent = doctor.name;
+        doctorFilter.appendChild(option);
+    });
+}
+
+// Update doctor filter
+function updateDoctorFilter() {
+    selectedDoctor = document.getElementById('doctorFilter').value;
+    const detailViewGroup = document.getElementById('detailViewGroup');
+    
+    if (selectedDoctor === 'all') {
+        detailViewGroup.style.display = 'none';
+        document.getElementById('doctorDetailView').style.display = 'none';
+        document.getElementById('utilizationChartArea').style.display = 'block';
+        document.getElementById('utilizationStats').style.display = 'grid';
+        generateUtilizationChart();
+        updateUtilizationStats();
+    } else {
+        detailViewGroup.style.display = 'flex';
+        document.getElementById('utilizationChartArea').style.display = 'none';
+        document.getElementById('utilizationStats').style.display = 'none';
+        showDoctorDetails();
+    }
+}
+
+// Update detail view (appointments only now)
+function updateDetailView() {
+    currentDetailView = document.getElementById('detailView').value;
+    if (selectedDoctor !== 'all') {
+        showDoctorDetails();
+    }
+}
+
+// Show doctor details
+function showDoctorDetails() {
+    const doctorDetailView = document.getElementById('doctorDetailView');
+    const doctorData = utilizationData.doctors.find(d => d.name === selectedDoctor);
+    
+    if (!doctorData) return;
+    
+    // Update header
+    document.getElementById('doctorDetailTitle').textContent = `${doctorData.name} - ${doctorData.specialty}`;
+    document.getElementById('doctorDetailCount').textContent = `${doctorData.visits} appointments`;
+    document.getElementById('doctorDetailLocation').textContent = doctorData.location;
+    
+    // Show detail view
+    doctorDetailView.style.display = 'block';
+    
+    // Show appointments only (medications moved to main view)
+    showAppointments();
+}
+
+// Show appointments for selected doctor
+function showAppointments() {
+    const content = document.getElementById('doctorDetailContent');
+    const appointments = doctorAppointments[selectedDoctor] || [];
+    
+    content.innerHTML = '';
+    
+    if (appointments.length === 0) {
+        content.innerHTML = '<div style="text-align: center; color: #666; padding: 40px;">No appointments found for this doctor.</div>';
+        return;
+    }
+    
+    // Create appointment chart
+    const chartContainer = document.createElement('div');
+    chartContainer.className = 'appointment-chart-container';
+    
+    chartContainer.innerHTML = `
+        <div class="appointment-chart-header">
+            <h4>Appointment Timeline & Concerns</h4>
+            <div class="appointment-chart-legend">
+                <div class="legend-item">
+                    <div class="legend-dot completed"></div>
+                    <span>Completed</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot upcoming"></div>
+                    <span>Upcoming</span>
+                </div>
+            </div>
+        </div>
+        <div class="appointment-chart-area">
+            <div class="appointment-y-axis" id="appointmentYAxis"></div>
+            <div class="appointment-chart-grid" id="appointmentChartGrid">
+                <svg class="appointment-chart-svg" id="appointmentChartSvg" viewBox="0 0 600 300"></svg>
+            </div>
+        </div>
+        <div class="appointment-x-axis" id="appointmentXAxis"></div>
+    `;
+    
+    content.appendChild(chartContainer);
+    
+    // Generate the chart
+    generateAppointmentChart(appointments);
+}
+
+// Generate appointment timeline chart
+function generateAppointmentChart(appointments) {
+    // Sort appointments by date
+    const sortedAppointments = [...appointments].sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // Get unique concerns for Y-axis
+    const uniqueConcerns = [...new Set(sortedAppointments.map(apt => apt.concern))];
+    const concernHeight = 300 / Math.max(uniqueConcerns.length, 1);
+    
+    // Update Y-axis with concerns
+    const yAxis = document.getElementById('appointmentYAxis');
+    yAxis.innerHTML = '';
+    uniqueConcerns.forEach((concern, index) => {
+        const label = document.createElement('div');
+        label.className = 'appointment-y-label';
+        label.textContent = concern;
+        label.style.height = `${concernHeight}px`;
+        yAxis.appendChild(label);
+    });
+    
+    // Update X-axis with dates
+    const xAxis = document.getElementById('appointmentXAxis');
+    xAxis.innerHTML = '';
+    sortedAppointments.forEach(appointment => {
+        const label = document.createElement('div');
+        label.className = 'appointment-x-label';
+        label.textContent = new Date(appointment.date).toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric',
+            year: '2-digit'
+        });
+        xAxis.appendChild(label);
+    });
+    
+    // Generate chart points
+    const svg = document.getElementById('appointmentChartSvg');
+    svg.innerHTML = '';
+    
+    const pointsCount = sortedAppointments.length;
+    const xStep = pointsCount > 1 ? 600 / (pointsCount - 1) : 300;
+    
+    // Draw connecting line
+    if (sortedAppointments.length > 1) {
+        let linePath = '';
+        sortedAppointments.forEach((appointment, index) => {
+            const x = index * xStep;
+            const concernIndex = uniqueConcerns.indexOf(appointment.concern);
+            const y = concernIndex * concernHeight + concernHeight / 2;
+            linePath += index === 0 ? `M ${x},${y}` : ` L ${x},${y}`;
+        });
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        line.setAttribute('d', linePath);
+        line.setAttribute('fill', 'none');
+        line.setAttribute('stroke', '#e5e7eb');
+        line.setAttribute('stroke-width', '2');
+        line.setAttribute('stroke-dasharray', '5,5');
+        svg.appendChild(line);
+    }
+    
+    // Draw appointment points
+    sortedAppointments.forEach((appointment, index) => {
+        const x = index * xStep;
+        const concernIndex = uniqueConcerns.indexOf(appointment.concern);
+        const y = concernIndex * concernHeight + concernHeight / 2;
+        
+        // Create circle for appointment
+        const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', '8');
+        circle.setAttribute('fill', appointment.status === 'completed' ? '#16a34a' : '#2563eb');
+        circle.setAttribute('stroke', 'white');
+        circle.setAttribute('stroke-width', '3');
+        circle.style.cursor = 'pointer';
+        
+        // Add hover tooltip
+        circle.addEventListener('mouseenter', (e) => {
+            const formattedDate = new Date(appointment.date).toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            showTooltip(e, `${appointment.time} - ${appointment.concern}`, formattedDate);
+        });
+        circle.addEventListener('mouseleave', hideTooltip);
+        
+        svg.appendChild(circle);
+    });
+}
+
+// Generate medication schedule chart
+function generateMedicationChart(medications) {
+    // Calculate date range for X-axis (from today to furthest end date)
+    const today = new Date();
+    const endDates = medications.map(med => {
+        if (med.daysRemaining === 'N/A') return null;
+        const endDate = new Date(today);
+        endDate.setDate(today.getDate() + parseInt(med.daysRemaining));
+        return endDate;
+    }).filter(date => date !== null);
+    
+    const maxEndDate = endDates.length > 0 ? new Date(Math.max(...endDates)) : new Date(today.getTime() + 90 * 24 * 60 * 60 * 1000);
+    
+    // Generate date points for X-axis (weekly intervals)
+    const datePoints = [];
+    const currentDate = new Date(today);
+    while (currentDate <= maxEndDate) {
+        datePoints.push(new Date(currentDate));
+        currentDate.setDate(currentDate.getDate() + 7); // Weekly intervals
+    }
+    
+    const medicationHeight = 300 / Math.max(medications.length, 1);
+    
+    // Update Y-axis with medication names and duration info
+    const yAxis = document.getElementById('medicationYAxis');
+    yAxis.innerHTML = '';
+    medications.forEach((medication, index) => {
+        const label = document.createElement('div');
+        label.className = 'medication-y-label';
+        
+        // Create duration status indicator
+        const durationClass = medication.daysRemaining !== 'N/A' && medication.daysRemaining < 15 ? 
+            (medication.daysRemaining < 7 ? 'critical' : 'warning') : 'normal';
+        
+        const durationInfo = medication.daysRemaining !== 'N/A' ? 
+            `${medication.daysRemaining}d left • ${medication.refillsLeft} refills` : 
+            medication.duration;
+        
+        const prescribedByInfo = medication.prescribedBy ? ` • ${medication.prescribedBy}` : '';
+        
+        label.innerHTML = `
+            <div style="font-weight: 600; margin-bottom: 2px;">${medication.name} (${medication.dosage})</div>
+            <div style="font-size: 10px; color: ${durationClass === 'critical' ? '#dc2626' : durationClass === 'warning' ? '#f59e0b' : '#666'};">
+                ${durationInfo}${prescribedByInfo}
+            </div>
+        `;
+        label.style.height = `${medicationHeight}px`;
+        yAxis.appendChild(label);
+    });
+    
+    // Update X-axis with dates
+    const xAxis = document.getElementById('medicationXAxis');
+    xAxis.innerHTML = '';
+    datePoints.forEach(date => {
+        const label = document.createElement('div');
+        label.className = 'medication-x-label';
+        label.textContent = date.toLocaleDateString('en-US', { 
+            month: 'short', 
+            day: 'numeric'
+        });
+        xAxis.appendChild(label);
+    });
+    
+    // Generate chart timeline
+    const svg = document.getElementById('medicationChartSvg');
+    svg.innerHTML = '';
+    
+    const xStep = datePoints.length > 1 ? 600 / (datePoints.length - 1) : 300;
+    
+    // Define colors for different medications
+    const medicationColors = ['#dc2626', '#0ea5e9', '#16a34a', '#f59e0b', '#8b5cf6', '#06b6d4', '#84cc16'];
+    
+    // Draw medication lines
+    medications.forEach((medication, medIndex) => {
+        const y = medIndex * medicationHeight + medicationHeight / 2;
+        const color = medicationColors[medIndex % medicationColors.length];
+        
+        // Determine duration status for visual indicators
+        const durationStatus = medication.daysRemaining !== 'N/A' && medication.daysRemaining < 15 ? 
+            (medication.daysRemaining < 7 ? 'critical' : 'warning') : 'normal';
+        
+        if (medication.daysRemaining !== 'N/A') {
+            // Calculate end date for this medication
+            const endDate = new Date(today);
+            endDate.setDate(today.getDate() + parseInt(medication.daysRemaining));
+            
+            // Find the x position for the end date
+            let endX = 0;
+            for (let i = 0; i < datePoints.length; i++) {
+                if (datePoints[i] >= endDate) {
+                    // Interpolate between date points for more accurate positioning
+                    if (i > 0) {
+                        const prevDate = datePoints[i - 1];
+                        const nextDate = datePoints[i];
+                        const ratio = (endDate - prevDate) / (nextDate - prevDate);
+                        endX = (i - 1) * xStep + ratio * xStep;
+                    } else {
+                        endX = i * xStep;
+                    }
+                    break;
+                }
+                endX = i * xStep;
+            }
+            
+            // Draw line from start to end
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', 0);
+            line.setAttribute('y1', y);
+            line.setAttribute('x2', endX);
+            line.setAttribute('y2', y);
+            line.setAttribute('stroke', color);
+            line.setAttribute('stroke-width', '4');
+            line.setAttribute('stroke-linecap', 'round');
+            line.style.cursor = 'pointer';
+            
+            // Add dash pattern for critical/warning medications
+            if (durationStatus === 'critical') {
+                line.setAttribute('stroke-dasharray', '8,4');
+            } else if (durationStatus === 'warning') {
+                line.setAttribute('stroke-dasharray', '12,6');
+            }
+            
+            line.addEventListener('mouseenter', (e) => {
+                const endDateStr = endDate.toLocaleDateString('en-US', { 
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                const durationInfo = `Ends: ${endDateStr} • ${medication.daysRemaining} days remaining • ${medication.refillsLeft} refills left`;
+                showTooltip(e, `${medication.name} ${medication.dosage}`, durationInfo);
+            });
+            line.addEventListener('mouseleave', hideTooltip);
+            
+            svg.appendChild(line);
+            
+            // Add end marker
+            const endMarker = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            endMarker.setAttribute('cx', endX);
+            endMarker.setAttribute('cy', y);
+            endMarker.setAttribute('r', '6');
+            endMarker.setAttribute('fill', color);
+            endMarker.setAttribute('stroke', 'white');
+            endMarker.setAttribute('stroke-width', '2');
+            endMarker.style.cursor = 'pointer';
+            
+            endMarker.addEventListener('mouseenter', (e) => {
+                const endDateStr = endDate.toLocaleDateString('en-US', { 
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                showTooltip(e, `${medication.name} ends`, endDateStr);
+            });
+            endMarker.addEventListener('mouseleave', hideTooltip);
+            
+            svg.appendChild(endMarker);
+        } else {
+            // For ongoing medications without specific end dates, show dashed line across full timeline
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', 0);
+            line.setAttribute('y1', y);
+            line.setAttribute('x2', 600);
+            line.setAttribute('y2', y);
+            line.setAttribute('stroke', color);
+            line.setAttribute('stroke-width', '4');
+            line.setAttribute('stroke-dasharray', '10,10');
+            line.setAttribute('stroke-linecap', 'round');
+            line.style.cursor = 'pointer';
+            
+            line.addEventListener('mouseenter', (e) => {
+                showTooltip(e, `${medication.name} ${medication.dosage}`, `${medication.duration} - No specific end date`);
+            });
+            line.addEventListener('mouseleave', hideTooltip);
+            
+            svg.appendChild(line);
+        }
+        
+        // Add start marker (today)
+        const startMarker = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        startMarker.setAttribute('cx', 0);
+        startMarker.setAttribute('cy', y);
+        startMarker.setAttribute('r', '6');
+        startMarker.setAttribute('fill', color);
+        startMarker.setAttribute('stroke', 'white');
+        startMarker.setAttribute('stroke-width', '2');
+        svg.appendChild(startMarker);
+    });
+}
+
+// Show all medications from all doctors (main view)
+function showAllMedications() {
+    const content = document.getElementById('doctorDetailContent');
+    
+    // Hide the doctor detail header when showing all medications
+    document.getElementById('doctorDetailTitle').style.display = 'none';
+    document.getElementById('doctorDetailCount').style.display = 'none';
+    document.getElementById('doctorDetailLocation').style.display = 'none';
+    document.querySelector('.doctor-detail-summary').style.display = 'none';
+    
+    // Combine all medications from all doctors
+    const allMedications = [];
+    Object.keys(doctorMedications).forEach(doctorName => {
+        doctorMedications[doctorName].forEach(medication => {
+            allMedications.push({
+                ...medication,
+                prescribedBy: doctorName
+            });
+        });
+    });
+    
+    content.innerHTML = '';
+    
+    if (allMedications.length === 0) {
+        content.innerHTML = '<div style="text-align: center; color: #666; padding: 40px;">No medications found.</div>';
+        return;
+    }
+    
+    // Create medication schedule chart
+    const chartContainer = document.createElement('div');
+    chartContainer.className = 'medication-chart-container';
+    
+    chartContainer.innerHTML = `
+        <div class="medication-chart-header">
+            <h4>All Medications Duration Timeline</h4>
+            <div class="medication-chart-legend">
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #16a34a;"></div>
+                    <span>Start Date (Today)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #dc2626;"></div>
+                    <span>Critical (< 7 days)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #f59e0b;"></div>
+                    <span>Warning (< 15 days)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-dot" style="background: #6b7280;"></div>
+                    <span>End Date</span>
+                </div>
+            </div>
+        </div>
+        <div class="medication-chart-area">
+            <div class="medication-y-axis" id="medicationYAxis"></div>
+            <div class="medication-chart-grid" id="medicationChartGrid">
+                <svg class="medication-chart-svg" id="medicationChartSvg" viewBox="0 0 600 300"></svg>
+            </div>
+        </div>
+        <div class="medication-x-axis" id="medicationXAxis"></div>
+    `;
+    
+    content.appendChild(chartContainer);
+    
+    // Generate the chart with all medications
+    generateMedicationChart(allMedications);
+}
+
+// Generate utilization chart
+function generateUtilizationChart() {
+    const data = utilizationData[currentUtilizationView];
+    const maxVisits = Math.max(...data.map(d => d.visits));
+    const yAxisMax = Math.ceil(maxVisits / 5) * 5;
+    
+    // Update Y-axis
+    const yAxis = document.getElementById('utilizationYAxis');
+    yAxis.innerHTML = '';
+    for (let i = yAxisMax; i >= 0; i -= Math.ceil(yAxisMax / 5)) {
+        const label = document.createElement('div');
+        label.className = 'utilization-y-label';
+        label.textContent = i;
+        yAxis.appendChild(label);
+    }
+    
+    // Generate bar chart
+    const chartGrid = document.getElementById('utilizationChartGrid');
+    chartGrid.innerHTML = '';
+    
+    data.forEach(item => {
+        const barItem = document.createElement('div');
+        barItem.className = 'utilization-bar-item';
+        
+        const bar = document.createElement('div');
+        bar.className = 'utilization-bar';
+        const barHeight = (item.visits / yAxisMax) * 240;
+        bar.style.height = `${barHeight}px`;
+        
+        const barValue = document.createElement('div');
+        barValue.className = 'utilization-bar-value';
+        barValue.textContent = item.visits;
+        
+        bar.appendChild(barValue);
+        barItem.appendChild(bar);
+        chartGrid.appendChild(barItem);
+        
+        // Add hover tooltip
+        bar.addEventListener('mouseenter', (e) => {
+            showTooltip(e, `${item.visits} visits`, item.name);
+        });
+        bar.addEventListener('mouseleave', hideTooltip);
+    });
+    
+    // Update X-axis
+    const xAxis = document.getElementById('utilizationXAxis');
+    xAxis.innerHTML = '';
+    data.forEach(item => {
+        const label = document.createElement('div');
+        label.className = 'utilization-x-label';
+        label.textContent = item.name;
+        xAxis.appendChild(label);
+    });
+}
+
+// Update utilization stats
+function updateUtilizationStats() {
+    const data = utilizationData[currentUtilizationView];
+    const mostVisited = data[0];
+    
+    document.getElementById('mostVisitedValue').textContent = mostVisited.name;
+    document.getElementById('mostVisitedCount').textContent = `${mostVisited.visits} visits`;
+    
+    if (currentUtilizationView === 'geography') {
+        document.getElementById('primaryLocationValue').textContent = mostVisited.name;
+        document.getElementById('primaryLocationCount').textContent = `${mostVisited.visits} visits`;
+    } else if (currentUtilizationView === 'doctors') {
+        document.getElementById('primaryLocationValue').textContent = 'Downtown';
+        document.getElementById('primaryLocationCount').textContent = '18 visits';
+    } else {
+        document.getElementById('primaryLocationValue').textContent = 'Heart Center';
+        document.getElementById('primaryLocationCount').textContent = '12 visits';
+    }
+}
 
 // Update vital chart
 function updateVitalChart() {
@@ -933,11 +2134,17 @@ function hideTooltip() {
 
 // Initialize dashboard
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize doctor filter for default "doctors" view
+    populateDoctorFilter();
+    document.getElementById('doctorFilterGroup').style.display = 'flex';
+    
+    generateUtilizationChart();
+    updateUtilizationStats();
     generateVitalChart();
     
     console.log('Patient dashboard loaded successfully');
 });
 </script>
 
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'973af5c552a8ba05',t:'MTc1NTk1NTc3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'974271f30071b9ef',t:'MTc1NjAzNDI2Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>

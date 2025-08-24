@@ -239,6 +239,428 @@
   color: #dc2626;
 }
 
+/* Medication Timeline Styles */
+.medicationTimeline {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 16px;
+}
+
+.medicationRow {
+  display: grid;
+  grid-template-columns: 200px 1fr 150px;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.medicationRow:last-child {
+  border-bottom: none;
+}
+
+.medicationInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.medicationName {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.medicationDosage {
+  font-size: 12px;
+  color: #666;
+}
+
+.medicationDoctor {
+  font-size: 11px;
+  color: #888;
+}
+
+.timelineContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timelineTrack {
+  position: relative;
+  height: 12px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.timelineBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f3f4f6;
+}
+
+.timelineBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.3s ease;
+}
+
+.timelineBar.active {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+}
+
+.timelineBar.ongoing {
+  background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+}
+
+.timelineBar.warning {
+  background: linear-gradient(90deg, #d97706, #f59e0b);
+}
+
+.timelineBar.critical {
+  background: linear-gradient(90deg, #dc2626, #ef4444);
+}
+
+.timelineBar.completed {
+  background: linear-gradient(90deg, #6b7280, #9ca3af);
+}
+
+.timelineRemaining {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #e5e7eb;
+  border-radius: 0 6px 6px 0;
+}
+
+.currentIndicator {
+  position: absolute;
+  top: -2px;
+  width: 2px;
+  height: 16px;
+  background: #1a1a1a;
+  border-radius: 1px;
+  transform: translateX(-1px);
+}
+
+.timelineDates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #666;
+}
+
+.startDate, .endDate {
+  font-weight: 500;
+}
+
+.ongoingLabel {
+  color: #0ea5e9;
+  font-weight: 600;
+}
+
+.medicationStatus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.statusBadge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.statusBadge.active {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.statusBadge.ongoing {
+  background: #eff6ff;
+  color: #0ea5e9;
+}
+
+.statusBadge.warning {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.statusBadge.critical {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.statusBadge.completed {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.refillInfo {
+  font-size: 10px;
+  color: #888;
+}
+
+.currentDateRef {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.todayIndicator {
+  display: inline-block;
+  background: #f8fafc;
+  color: #475569;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+}
+
+.medicationTooltip {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  max-width: 280px;
+}
+
+.tooltipHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.tooltipHeader h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.tooltipStatus {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.tooltipContent {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.tooltipContent p {
+  margin: 4px 0;
+}
+
+.tooltipContent strong {
+  color: #1a1a1a;
+}
+
+.legendContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #666;
+}
+
+.legendDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.tooltip {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.tooltipLabel {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+.tooltipItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.medicationSummary {
+  margin-top: 24px;
+}
+
+.medicationSummary h3 {
+  margin-bottom: 16px;
+  color: #1a1a1a;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.medicationCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.medicationCard {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  transition: all 0.2s;
+}
+
+.medicationCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.medicationCard.critical {
+  border-left: 4px solid #dc2626;
+  background: #fefefe;
+}
+
+.medicationCard.warning {
+  border-left: 4px solid #d97706;
+  background: #fefefe;
+}
+
+.medicationCard.active {
+  border-left: 4px solid #16a34a;
+  background: #fefefe;
+}
+
+.medicationCard.ongoing {
+  border-left: 4px solid #0ea5e9;
+  background: #fefefe;
+}
+
+.medicationCard.completed {
+  border-left: 4px solid #6b7280;
+  background: #f9fafb;
+  opacity: 0.8;
+}
+
+.medicationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.medicationStatus {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.medicationStatus.critical {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.medicationStatus.warning {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.medicationStatus.active {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+.medicationStatus.ongoing {
+  background: #eff6ff;
+  color: #0ea5e9;
+}
+
+.medicationStatus.completed {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.medicationDetails {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.4;
+}
+
+.medicationDetails p {
+  margin: 4px 0;
+}
+
+.medicationDetails strong {
+  color: #1a1a1a;
+}
+
+/* Responsive Design for Medication Timeline */
+@media (max-width: 768px) {
+  .medicationRow {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 16px;
+    background: #fafafa;
+    border-radius: 8px;
+    border-bottom: none;
+    margin-bottom: 12px;
+  }
+  
+  .medicationStatus {
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .medicationTimeline {
+    padding: 16px;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .mainContent {
@@ -284,5 +706,155 @@
 
   .currentReadings {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Concern-based medication timeline styles */
+.concernMedicationsSection {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.concernMedicationsSection h3 {
+  margin: 0 0 1rem 0;
+  color: #1e293b;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.medicationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.medicationCard.selected {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.medCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.medName {
+  font-weight: 600;
+  color: #1e293b;
+  font-size: 1rem;
+}
+
+.statusBadge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statusBadge.active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.statusBadge.warning {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.statusBadge.critical {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.statusBadge.expired {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.medCardDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.medDosage {
+  color: #64748b;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.medDuration {
+  color: #3b82f6;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.medDoctor {
+  color: #7c3aed;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.concernTag {
+  background: #e0e7ff;
+  color: #3730a3;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tooltipConcern {
+  color: #3b82f6;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+/* Enhanced dropdown styles for concern selection */
+.concernSelect {
+  background: white;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #374151;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  min-width: 160px;
+}
+
+.concernSelect:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Responsive design for medication cards */
+@media (max-width: 768px) {
+  .medicationGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chartControls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .controlGroup {
+    width: 100%;
+  }
+  
+  .concernSelect {
+    width: 100%;
   }
 }

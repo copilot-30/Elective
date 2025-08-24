@@ -1,5 +1,6 @@
 import React from 'react';
 import VitalSignsTrends from './VitalSignsTrends';
+import MedicationTimeline from './MedicationTimeline';
 import { Activity, Heart, Thermometer } from 'lucide-react';
 import styles from './Analytics.module.css';
 
@@ -192,6 +193,9 @@ const Analytics = () => {
 
           {/* Vital Trends Chart */}
           <VitalSignsTrends />
+
+          {/* Medication Timeline Chart */}
+          <MedicationTimeline />
         </div>
       </div>
     </div>

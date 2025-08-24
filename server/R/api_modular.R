@@ -50,6 +50,9 @@ source("endpoints/patient_satisfaction.R", local = TRUE)
 # Load Appointment Analytics module
 source("endpoints/appointment_analytics.R", local = TRUE)
 
+# Load Patient Medications module
+source("endpoints/patient_medications.R", local = TRUE)
+
 #* Get patient vital trends
 #* @param patient_id Patient ID to get vitals for
 #* @param vital_type Type of vital (blood_pressure, heart_rate, temperature, blood_sugar, oxygen, respiratory_rate, bmi)
@@ -254,6 +257,31 @@ function(period = "thismonth", chart = "appointments", type = "both", clinic = "
   get_appointment_analytics(period, chart, type, clinic)
 }
 
+#* Get patient medications
+#* @param patient_id Patient ID (default: patient300)
+#* @param type Request type (all, concern, timeline, active, adherence, appointment)
+#* @param concern Specific concern filter (for type=concern)
+#* @param appointment_id Appointment ID (for type=appointment)
+#* @get /api/patient-medications
+function(patient_id = "patient300", type = "all", concern = NULL, appointment_id = NULL) {
+  # Create a mock request object for the handler
+  req <- list(args = list(
+    patient_id = patient_id,
+    type = type,
+    concern = concern,
+    appointment_id = appointment_id
+  ))
+  
+  # Create a mock response object
+  res <- list(headers = list())
+  
+  # Call the handler
+  result <- handle_medication_request(req, res)
+  
+  # Parse the JSON response back to R object for API return
+  fromJSON(result$body, simplifyVector = FALSE)
+}
+
 #* Health check endpoint
 #* @get /health
 function() {
@@ -262,7 +290,7 @@ function() {
     timestamp = Sys.time(),
     version = "1.0.0",
     data_records = nrow(appointments_data),
-    active_modules = c("patient_vitals", "patients", "patient_concerns", "patient_satisfaction", "appointment_analytics")
+    active_modules = c("patient_vitals", "patients", "patient_concerns", "patient_satisfaction", "appointment_analytics", "patient_medications")
   )
 }
 
@@ -279,6 +307,7 @@ function() {
       "/api/patient-vitals" = "Get patient vital trends (legacy)",
       "/api/vital-signs-trends" = "Get vital signs trends for patient dashboard",
       "/api/appointment-analytics" = "Get appointment analytics",
+      "/api/patient-medications" = "Get patient medications and adherence data",
       "/api/patients" = "Get all patients",
       "/health" = "Health check"
     ),
@@ -287,6 +316,7 @@ function() {
       "patient_concerns.R" = "Top patient concerns analytics", 
       "patient_vitals.R" = "Patient vital trends analytics",
       "appointment_analytics.R" = "Appointment statistics analytics",
+      "patient_medications.R" = "Patient medication management and adherence tracking",
       "patients.R" = "Patient management endpoints"
     )
   )
