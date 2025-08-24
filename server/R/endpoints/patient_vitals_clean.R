@@ -115,7 +115,7 @@ get_patient_vitals <- function(patient_id = "patient1", vital_type = "blood_pres
       "temperature" = list(
         label = "Temperature",
         value = latest_record$value,
-        unit = "°F",
+        unit = "°C",
         status = if(latest_record$value > 100.4) "warning" else "normal",
         last_appointment = latest_record$date
       ),

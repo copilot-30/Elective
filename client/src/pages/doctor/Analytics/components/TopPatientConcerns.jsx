@@ -9,6 +9,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 import styles from '../Analytics.module.css';
+import { Cell } from 'recharts';
 
 const TopPatientConcerns = () => {
   const [currentPeriod, setCurrentPeriod] = useState('overall');
@@ -50,11 +51,23 @@ const TopPatientConcerns = () => {
     }
   };
 
-  // Helper function to assign colors to concerns
+  // Helper function to assign colors to concerns (dark to light gradient)
   const getColorByIndex = (index) => {
-    const colors = ['#1a1a1a', '#333', '#555', '#777', '#999', '#bbb', '#ddd', '#2563eb', '#7c3aed', '#dc2626'];
-    return colors[index % colors.length];
-  };
+    // Smooth blue gradient from dark to light for connectedness
+    const blueGradient = [
+      '#1e3a8a', // darkest
+      '#2b6cb0',
+      '#2563eb',
+      '#3b82f6',
+      '#60a5fa',
+      '#3182ce',
+      '#4299e1',
+      '#63b3ed',
+      '#90cdf4',
+      '#bee3f8'  // lightest
+    ];
+    return blueGradient[index % blueGradient.length];
+  }
 
   // Update concerns chart based on selected period
   const updateConcernsChart = (period) => {
@@ -71,23 +84,19 @@ const TopPatientConcerns = () => {
       <div className={styles.chartHeader}>
         <h2>Top Patient Concerns</h2>
         <div className={styles.dateFilterGroup}>
-          <label>Time Period:</label>
-          <div className={styles.dateFilterButtons}>
-            {[
-              { key: 'overall', label: 'All Time' },
-              { key: '7days', label: 'Last 7 Days' },
-              { key: 'thismonth', label: 'This Month' },
-              { key: 'last3months', label: 'Last 3 Months' }
-            ].map((period) => (
-              <button
-                key={period.key}
-                className={`${styles.dateFilterBtn} ${currentPeriod === period.key ? styles.active : ''}`}
-                onClick={() => updateConcernsChart(period.key)}
-              >
-                {period.label}
-              </button>
-            ))}
-          </div>
+          <label htmlFor="periodDropdown">Time Period:</label>
+          <select
+            id="periodDropdown"
+            className={styles.select}
+            value={currentPeriod}
+            onChange={e => updateConcernsChart(e.target.value)}
+            style={{ marginLeft: '12px', minWidth: '160px' }}
+          >
+            <option value="overall">All Time</option>
+            <option value="7days">Last 7 Days</option>
+            <option value="thismonth">This Month</option>
+            <option value="last3months">Last 3 Months</option>
+          </select>
         </div>
       </div>
 
@@ -108,7 +117,11 @@ const TopPatientConcerns = () => {
               />
               <YAxis stroke="#666" fontSize={12} />
               <Tooltip />
-              <Bar dataKey="count" fill="#1a1a1a" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="count" radius={[4, 4, 0, 0]}>
+                {concernsData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={entry.color} />
+                ))}
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         ) : (

@@ -18,7 +18,7 @@ import styles from '../Analytics.module.css';
 
 const AppointmentAnalytics = () => {
   const [currentAnalyticsChart, setCurrentAnalyticsChart] = useState('appointments');
-  const [currentAnalyticsTimeframe, setCurrentAnalyticsTimeframe] = useState('overall');
+  const [currentAnalyticsTimeframe, setCurrentAnalyticsTimeframe] = useState('thisyear');
   const [currentAnalyticsAppointmentType, setCurrentAnalyticsAppointmentType] = useState('both');
   const [currentAnalyticsClinic, setCurrentAnalyticsClinic] = useState('all');
   const [analyticsData, setAnalyticsData] = useState(null);
@@ -50,7 +50,12 @@ const AppointmentAnalytics = () => {
   // Get filtered appointment analytics data based on selections
   const getFilteredAppointmentData = () => {
     if (!analyticsData || !analyticsData.data) return [];
-    return analyticsData.data;
+    let data = analyticsData.data;
+    if (currentAnalyticsTimeframe === '7days') {
+      const uniqueDays = Array.from(new Set(data.map(d => d.day))).slice(-7);
+      data = data.filter(d => uniqueDays.includes(d.day));
+    }
+    return data;
   };
 
   // Get data key for chart based on chart type
@@ -89,7 +94,7 @@ const AppointmentAnalytics = () => {
               onChange={e => setCurrentAnalyticsTimeframe(e.target.value)}
               className={styles.select}
             >
-              <option value="overall">All Time</option>
+              <option value="thisyear">This Year</option>
               <option value="7days">Last 7 Days</option>
               <option value="thismonth">This Month</option>
               <option value="last3months">Last 3 Months</option>
@@ -154,9 +159,42 @@ const AppointmentAnalytics = () => {
               <ResponsiveContainer width="100%" height={300}>
                 <AreaChart data={getFilteredAppointmentData()}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-                  <XAxis dataKey="day" stroke="#666" fontSize={12} />
-                  <YAxis stroke="#666" fontSize={12} />
-                  <Tooltip formatter={(value, name) => [`${value}`, name]} />
+                  <XAxis
+                    dataKey="day"
+                    stroke="#666"
+                    fontSize={12}
+                    tickFormatter={tick => {
+                      if (currentAnalyticsTimeframe === 'thisyear') return tick;
+                      // Format as MM/DD
+                      const d = new Date(tick);
+                      if (!isNaN(d)) {
+                        return `${(d.getMonth()+1).toString().padStart(2,'0')}/${d.getDate().toString().padStart(2,'0')}`;
+                      }
+                      // fallback: try splitting if ISO string
+                      if (typeof tick === 'string' && tick.includes('-')) {
+                        const parts = tick.split('-');
+                        return `${parts[1]}/${parts[2]}`;
+                      }
+                      return tick;
+                    }}
+                  />
+                  <YAxis
+                    stroke="#666"
+                    fontSize={12}
+                    tick={{ fill: '#666' }}
+                  />
+                  <Tooltip formatter={(value, name) => [`${value}`, name]} labelFormatter={label => {
+                    if (currentAnalyticsTimeframe === 'thisyear') return label;
+                    const d = new Date(label);
+                    if (!isNaN(d)) {
+                      return `${(d.getMonth()+1).toString().padStart(2,'0')}/${d.getDate().toString().padStart(2,'0')}`;
+                    }
+                    if (typeof label === 'string' && label.includes('-')) {
+                      const parts = label.split('-');
+                      return `${parts[1]}/${parts[2]}`;
+                    }
+                    return label;
+                  }} />
                   <Legend />
                   
                   {/* Show stacked areas when "Both" is selected */}
@@ -219,7 +257,11 @@ const AppointmentAnalytics = () => {
                 <LineChart data={getFilteredAppointmentData()}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="day" stroke="#666" fontSize={12} />
-                  <YAxis stroke="#666" fontSize={12} />
+                  <YAxis
+                    stroke="#666"
+                    fontSize={12}
+                    tick={{ fill: '#666' }}
+                  />
                   <Tooltip formatter={(value) => [`${value}%`, 'No-Show Rate']} />
                   <Legend />
                   <Line 
@@ -240,7 +282,11 @@ const AppointmentAnalytics = () => {
                 <BarChart data={getFilteredAppointmentData()}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
                   <XAxis dataKey="day" stroke="#666" fontSize={12} />
-                  <YAxis stroke="#666" fontSize={12} />
+                  <YAxis
+                    stroke="#666"
+                    fontSize={12}
+                    tick={{ fill: '#666' }}
+                  />
                   <Tooltip formatter={(value) => [`${value} min`, 'Average Duration']} />
                   <Legend />
                   <Bar 

@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Health Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="wrapper">
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Activity Overview Cards -->
+            <div class="stats-grid">
+                <!-- Total Appointments Card -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon appointments">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-title">Total Appointments</div>
+                    </div>
+                    <div class="stat-value">24</div>
+                    <div class="stat-change positive">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+                        </svg>
+                        +3 this month
+                    </div>
+                </div>
+
+                <!-- Health Score Card -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon health">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-title">Health Score</div>
+                    </div>
+                    <div class="stat-value">8.2/10</div>
+                    <div class="stat-change positive">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+                        </svg>
+                        +0.4 improvement
+                    </div>
+                </div>
+
+                <!-- Next Appointment Card -->
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-icon upcoming">
+                            <svg width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-title">Next Appointment</div>
+                    </div>
+                    <div class="stat-value">May 15</div>
+                    <div class="stat-change neutral">
+                        <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        Dr. Martinez - Cardiology
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Vital Trends Chart -->
+            <div class="chart-section full-width">
+                <div class="chart-header">
+                    <h2>My Patient Vital Trends Over Time</h2>
+                    <div class="chart-controls">
+                        <div class="control-group">
+                            <label for="vitalSelect">Vital to Display:</label>
+                            <select id="vitalSelect" onchange="updateVitalChart()">
+                                <option value="bloodPressure">Blood Pressure</option>
+                                <option value="heartRate">Heart Rate</option>
+                                <option value="temperature">Temperature</option>
+                                <option value="bloodSugar">Blood Sugar</option>
+                                <option value="oxygen">Oxygen Saturation</option>
+                                <option value="weight">Weight</option>
+                                <option value="bmi">BMI</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <div class="chart-legend" id="vitalChartLegend">
+                        <!-- Legend items will be dynamically generated -->
+                    </div>
+                    
+                    <div class="chart-area">
+                        <div class="chart-main">
+                            <div class="y-axis" id="vitalYAxis">
+                                <!-- Y-axis labels will be dynamically generated -->
+                            </div>
+                            
+                            <div class="chart-grid" id="vitalChartGrid">
+                                <svg class="chart-svg" id="vitalChartSvg" viewBox="0 0 400 200">
+                                    <!-- Chart lines will be dynamically generated -->
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="x-axis" id="vitalXAxis">
+                            <!-- X-axis labels will be dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Current Readings -->
+                <div class="current-readings">
+                    <div class="reading-card">
+                        <div class="reading-label">Current Blood Pressure</div>
+                        <div class="reading-value">136/89</div>
+                        <div class="reading-status warning">Elevated</div>
+                    </div>
+                    <div class="reading-card">
+                        <div class="reading-label">Current Heart Rate</div>
+                        <div class="reading-value">86 bpm</div>
+                        <div class="reading-status normal">Normal</div>
+                    </div>
+                    <div class="reading-card">
+                        <div class="reading-label">Last Updated</div>
+                        <div class="reading-value">Today</div>
+                        <div class="reading-status">Home monitoring</div>
+                    </div>
+                    <div class="reading-card">
+                        <div class="reading-label">Trend</div>
+                        <div class="reading-value">Improving</div>
+                        <div class="reading-status positive">+5% this month</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.container {
+    height: calc(100vh - 100px);
+    padding: 20px;
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f0f0f0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.2s;
+}
+
+.stat-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.stat-icon.appointments {
+    background: #1a1a1a;
+}
+
+.stat-icon.health {
+    background: #16a34a;
+}
+
+.stat-icon.upcoming {
+    background: #0ea5e9;
+}
+
+.stat-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.stat-change {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.stat-change.positive {
+    color: #16a34a;
+}
+
+.stat-change.negative {
+    color: #dc2626;
+}
+
+.stat-change.neutral {
+    color: #666;
+}
+
+
+
+/* Chart Section */
+.chart-section {
+    background: white;
+    border: 1px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-section.full-width {
+    grid-column: 1 / -1;
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.chart-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.chart-subtitle {
+    font-size: 12px;
+    color: #666;
+    margin-top: 4px;
+    margin-bottom: 16px;
+}
+
+.chart-controls {
+    display: flex;
+    gap: 24px;
+    align-items: flex-end;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.control-group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+
+#vitalSelect {
+    padding: 8px 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 14px;
+    background: white;
+    width: 200px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 8px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding-right: 32px;
+}
+
+#vitalSelect:focus {
+    outline: none;
+    border-color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+/* Date Filter Styles */
+.date-filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.date-filter-group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #666;
+}
+
+.date-filter-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.date-filter-btn {
+    padding: 8px 16px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    border-radius: 6px;
+    font-family: "Poppins", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #666;
+}
+
+.date-filter-btn:hover {
+    background: #f8f9fa;
+    border-color: #d1d5db;
+}
+
+.date-filter-btn.active {
+    background: #1a1a1a;
+    color: white;
+    border-color: #1a1a1a;
+}
+
+
+
+
+
+/* Vital Chart Styles */
+.chart-container {
+    margin-bottom: 24px;
+}
+
+.chart-legend {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #666;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.legend-color.blood-pressure {
+    background: #dc2626;
+}
+
+.legend-color.heart-rate {
+    background: #0ea5e9;
+}
+
+.legend-color.temperature {
+    background: #16a34a;
+}
+
+.legend-color.blood-sugar {
+    background: #f59e0b;
+}
+
+.legend-color.oxygen {
+    background: #8b5cf6;
+}
+
+.legend-color.weight {
+    background: #06b6d4;
+}
+
+.legend-color.bmi {
+    background: #84cc16;
+}
+
+.chart-area {
+    position: relative;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-main {
+    display: flex;
+    flex: 1;
+}
+
+.y-axis {
+    width: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.y-label {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.chart-grid {
+    flex: 1;
+    position: relative;
+    border: 1px solid #f0f0f0;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.chart-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.x-axis {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-left: 40px;
+}
+
+.x-label {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Current Readings */
+.current-readings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.reading-card {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.reading-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.reading-value {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+}
+
+.reading-status {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.reading-status.normal {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+.reading-status.warning {
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.reading-status.critical {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.reading-status.positive {
+    background: #f0fdf4;
+    color: #16a34a;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+
+    .chart-header {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .chart-controls {
+        justify-content: space-between;
+    }
+
+    .chart-legend {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .current-readings {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .chart-section {
+        padding: 16px;
+    }
+
+    .current-readings {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// Patient vital data over time
+const patientVitalData = {
+    bloodPressure: [
+        { date: '2024-01-15', systolic: 142, diastolic: 92 },
+        { date: '2024-02-03', systolic: 138, diastolic: 90 },
+        { date: '2024-02-28', systolic: 135, diastolic: 88 },
+        { date: '2024-03-15', systolic: 140, diastolic: 92 },
+        { date: '2024-04-02', systolic: 136, diastolic: 89 },
+        { date: '2024-04-20', systolic: 132, diastolic: 85 }
+    ],
+    heartRate: [
+        { date: '2024-01-15', value: 88 },
+        { date: '2024-02-03', value: 85 },
+        { date: '2024-02-28', value: 82 },
+        { date: '2024-03-15', value: 90 },
+        { date: '2024-04-02', value: 86 },
+        { date: '2024-04-20', value: 84 }
+    ],
+    temperature: [
+        { date: '2024-01-15', value: 98.8 },
+        { date: '2024-02-03', value: 98.6 },
+        { date: '2024-02-28', value: 99.0 },
+        { date: '2024-03-15', value: 98.9 },
+        { date: '2024-04-02', value: 98.7 },
+        { date: '2024-04-20', value: 98.5 }
+    ],
+    bloodSugar: [
+        { date: '2024-01-15', value: 148 },
+        { date: '2024-02-03', value: 145 },
+        { date: '2024-02-28', value: 142 },
+        { date: '2024-03-15', value: 150 },
+        { date: '2024-04-02', value: 146 },
+        { date: '2024-04-20', value: 143 }
+    ],
+    oxygen: [
+        { date: '2024-01-15', value: 96 },
+        { date: '2024-02-03', value: 95 },
+        { date: '2024-02-28', value: 97 },
+        { date: '2024-03-15', value: 94 },
+        { date: '2024-04-02', value: 96 },
+        { date: '2024-04-20', value: 97 }
+    ],
+    weight: [
+        { date: '2024-01-15', value: 185 },
+        { date: '2024-02-03', value: 183 },
+        { date: '2024-02-28', value: 181 },
+        { date: '2024-03-15', value: 184 },
+        { date: '2024-04-02', value: 182 },
+        { date: '2024-04-20', value: 180 }
+    ],
+    bmi: [
+        { date: '2024-01-15', value: 27.6 },
+        { date: '2024-02-03', value: 27.3 },
+        { date: '2024-02-28', value: 27.0 },
+        { date: '2024-03-15', value: 27.4 },
+        { date: '2024-04-02', value: 27.1 },
+        { date: '2024-04-20', value: 26.8 }
+    ]
+};
+
+
+let currentVitalTimeframe = '6months';
+let currentVital = 'bloodPressure';
+
+// Format date for display
+function formatDate(dateString) {
+    if (dateString.includes('Week') || dateString.length <= 5) {
+        return dateString;
+    }
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
+
+
+
+// Update vital chart
+function updateVitalChart() {
+    currentVital = document.getElementById('vitalSelect').value;
+    generateVitalChart();
+}
+
+
+
+// Generate vital chart
+function generateVitalChart() {
+    const data = patientVitalData[currentVital];
+    
+    // Update legend
+    updateVitalLegend(currentVital);
+    
+    // Generate Y-axis labels
+    const yLabels = generateVitalYAxisLabels(currentVital);
+    const vitalRanges = getVitalRanges();
+    const range = vitalRanges[currentVital];
+    
+    const yAxis = document.getElementById('vitalYAxis');
+    yAxis.innerHTML = '';
+    yLabels.forEach(label => {
+        const div = document.createElement('div');
+        div.className = 'y-label';
+        div.textContent = label;
+        yAxis.appendChild(div);
+    });
+    
+    // Update X-axis
+    const xAxis = document.getElementById('vitalXAxis');
+    xAxis.innerHTML = '';
+    data.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'x-label';
+        div.textContent = formatDate(item.date);
+        xAxis.appendChild(div);
+    });
+    
+    // Generate chart
+    const svg = document.getElementById('vitalChartSvg');
+    svg.innerHTML = '';
+    
+    const pointsCount = data.length;
+    const xStep = pointsCount > 1 ? 400 / (pointsCount - 1) : 200;
+    
+    if (currentVital === 'bloodPressure') {
+        // Handle blood pressure with two lines
+        ['systolic', 'diastolic'].forEach(bpType => {
+            const color = bpType === 'systolic' ? '#dc2626' : '#f87171';
+            
+            // Create line
+            let linePath = '';
+            data.forEach((item, index) => {
+                const x = index * xStep;
+                const y = valueToY(item[bpType], range.min, range.max);
+                linePath += index === 0 ? `M ${x},${y}` : ` L ${x},${y}`;
+            });
+            
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            line.setAttribute('d', linePath);
+            line.setAttribute('fill', 'none');
+            line.setAttribute('stroke', color);
+            line.setAttribute('stroke-width', '3');
+            svg.appendChild(line);
+            
+            // Create points
+            data.forEach((item, index) => {
+                const x = index * xStep;
+                const y = valueToY(item[bpType], range.min, range.max);
+                
+                const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', '4');
+                circle.setAttribute('fill', color);
+                circle.style.cursor = 'pointer';
+                circle.addEventListener('mouseenter', (e) => 
+                    showTooltip(e, `${bpType}: ${item[bpType]} mmHg`, formatDate(item.date))
+                );
+                circle.addEventListener('mouseleave', hideTooltip);
+                svg.appendChild(circle);
+            });
+        });
+    } else {
+        // Handle other vitals with single line
+        const config = getVitalConfig(currentVital);
+        
+        // Create line
+        let linePath = '';
+        data.forEach((item, index) => {
+            const x = index * xStep;
+            const y = valueToY(item.value, range.min, range.max);
+            linePath += index === 0 ? `M ${x},${y}` : ` L ${x},${y}`;
+        });
+        
+        const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        line.setAttribute('d', linePath);
+        line.setAttribute('fill', 'none');
+        line.setAttribute('stroke', config.color);
+        line.setAttribute('stroke-width', '3');
+        svg.appendChild(line);
+        
+        // Create points
+        data.forEach((item, index) => {
+            const x = index * xStep;
+            const y = valueToY(item.value, range.min, range.max);
+            
+            const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.setAttribute('r', '4');
+            circle.setAttribute('fill', config.color);
+            circle.style.cursor = 'pointer';
+            circle.addEventListener('mouseenter', (e) => 
+                showTooltip(e, `${config.label}: ${item.value} ${config.unit}`, formatDate(item.date))
+            );
+            circle.addEventListener('mouseleave', hideTooltip);
+            svg.appendChild(circle);
+        });
+    }
+}
+
+// Helper functions
+function getVitalRanges() {
+    return {
+        bloodPressure: { min: 60, max: 160 },
+        heartRate: { min: 50, max: 120 },
+        temperature: { min: 95, max: 102 },
+        bloodSugar: { min: 80, max: 200 },
+        oxygen: { min: 85, max: 100 },
+        weight: { min: 160, max: 200 },
+        bmi: { min: 20, max: 35 }
+    };
+}
+
+function getVitalConfig(vital) {
+    const configs = {
+        heartRate: { color: '#0ea5e9', label: 'Heart Rate', unit: 'bpm' },
+        temperature: { color: '#16a34a', label: 'Temperature', unit: '°F' },
+        bloodSugar: { color: '#f59e0b', label: 'Blood Sugar', unit: 'mg/dL' },
+        oxygen: { color: '#8b5cf6', label: 'Oxygen Saturation', unit: '%' },
+        weight: { color: '#06b6d4', label: 'Weight', unit: 'lbs' },
+        bmi: { color: '#84cc16', label: 'BMI', unit: '' }
+    };
+    return configs[vital];
+}
+
+function generateVitalYAxisLabels(vital) {
+    const ranges = getVitalRanges();
+    const range = ranges[vital];
+    const labels = [];
+    const step = (range.max - range.min) / 5;
+    
+    for (let i = range.max; i >= range.min; i -= step) {
+        labels.push(Math.round(i));
+    }
+    return labels;
+}
+
+function valueToY(value, minY, maxY) {
+    const range = maxY - minY;
+    return ((maxY - value) / range) * 200;
+}
+
+function updateVitalLegend(vital) {
+    const legend = document.getElementById('vitalChartLegend');
+    legend.innerHTML = '';
+    
+    if (vital === 'bloodPressure') {
+        const items = [
+            { label: 'Systolic (mmHg)', color: '#dc2626' },
+            { label: 'Diastolic (mmHg)', color: '#f87171' }
+        ];
+        
+        items.forEach(item => {
+            const legendItem = document.createElement('div');
+            legendItem.className = 'legend-item';
+            
+            const colorBox = document.createElement('div');
+            colorBox.className = 'legend-color';
+            colorBox.style.backgroundColor = item.color;
+            
+            const label = document.createElement('span');
+            label.textContent = item.label;
+            
+            legendItem.appendChild(colorBox);
+            legendItem.appendChild(label);
+            legend.appendChild(legendItem);
+        });
+    } else {
+        const config = getVitalConfig(vital);
+        if (config) {
+            const legendItem = document.createElement('div');
+            legendItem.className = 'legend-item';
+            
+            const colorBox = document.createElement('div');
+            colorBox.className = `legend-color ${vital}`;
+            
+            const label = document.createElement('span');
+            label.textContent = `${config.label} (${config.unit})`;
+            
+            legendItem.appendChild(colorBox);
+            legendItem.appendChild(label);
+            legend.appendChild(legendItem);
+        }
+    }
+}
+
+// Show tooltip
+function showTooltip(event, value, label) {
+    let tooltip = document.getElementById('chartTooltip');
+    if (!tooltip) {
+        tooltip = document.createElement('div');
+        tooltip.id = 'chartTooltip';
+        tooltip.style.cssText = `
+            position: absolute;
+            background: #1a1a1a;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            pointer-events: none;
+            z-index: 1000;
+            white-space: nowrap;
+        `;
+        document.body.appendChild(tooltip);
+    }
+    
+    tooltip.innerHTML = `<strong>${label}</strong><br>${value}`;
+    tooltip.style.display = 'block';
+    tooltip.style.left = event.pageX + 10 + 'px';
+    tooltip.style.top = event.pageY - 10 + 'px';
+}
+
+// Hide tooltip
+function hideTooltip() {
+    const tooltip = document.getElementById('chartTooltip');
+    if (tooltip) {
+        tooltip.style.display = 'none';
+    }
+}
+
+// Initialize dashboard
+document.addEventListener('DOMContentLoaded', function() {
+    generateVitalChart();
+    
+    console.log('Patient dashboard loaded successfully');
+});
+</script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'973af5c552a8ba05',t:'MTc1NTk1NTc3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

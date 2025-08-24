@@ -26,7 +26,7 @@ appointments_df <- fromJSON(data_path)
 # 2. MODIFY SATISFACTION SCORES
 # ----------------------------------------------------
 set.seed(42)
-satisfaction_probabilities <- c(0.10, 0.15, 0.25, 0.35, 0.15)
+satisfaction_probabilities <- c(0.04, 0.06, 0.15, 0.25, 0.50)
 appointments_df$satisfaction <- sample(1:5,
                                        size = nrow(appointments_df),
                                        replace = TRUE,
@@ -50,6 +50,13 @@ appointments_df <- appointments_df %>%
     bmi = ifelse(rows_to_modify, pmax(18.0, round(rnorm(num_to_modify, mean = 24, sd = 3), 1)), NA)
 )
 
+# 3.5. ADJUST FOR NO-SHOWS
+# ----------------------------------------------------
+appointments_df <- appointments_df %>%
+  mutate(
+    satisfaction = ifelse(no_show, NA_integer_, satisfaction),
+    duration = ifelse(no_show, NA_integer_, duration)
+  )
 
 # 4. SAVE THE CLEANED DATA
 # ----------------------------------------------------

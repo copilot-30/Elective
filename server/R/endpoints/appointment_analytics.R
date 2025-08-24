@@ -25,13 +25,17 @@ get_appointment_analytics <- function(period = "thismonth", chart = "appointment
       start_date <- current_date - 90
       filtered_data <- appointments_data %>%
         filter(as.Date(date) >= start_date)
+    } else if (period == "thisyear") {
+      start_date <- lubridate::floor_date(current_date, "year")
+      filtered_data <- appointments_data %>%
+        filter(as.Date(date) >= start_date)
     }
     
     # Convert to proper data types and clean data
     filtered_data <- filtered_data %>%
       mutate(
         appointment_date = as.Date(date),
-        day = format(as.Date(date), "%a %m/%d"),
+        day = if (period == "thisyear") format(as.Date(date), "%b") else format(as.Date(date), "%a %m/%d"),
         is_online = tolower(type) %in% c("online", "telemedicine", "virtual"),
         is_noshow = as.logical(no_show),
         duration_minutes = case_when(
@@ -49,60 +53,114 @@ get_appointment_analytics <- function(period = "thismonth", chart = "appointment
     
     # Group data by day for charts
     if (chart == "appointments") {
-      # Appointments count chart
-      chart_data <- filtered_data %>%
-        group_by(day, appointment_date) %>%
-        summarise(
-          online = sum(is_online & !is_noshow),
-          clinic = sum(!is_online & !is_noshow),
-          clinic1 = sum(!is_online & !is_noshow & clinic_name == "clinic1"),
-          clinic2 = sum(!is_online & !is_noshow & clinic_name == "clinic2"),
-          clinic3 = sum(!is_online & !is_noshow & clinic_name == "clinic3"),
-          total = sum(!is_noshow),
-          .groups = "drop"
-        ) %>%
-        arrange(appointment_date) %>%
-        select(-appointment_date)
+      if (period == "thisyear") {
+        # Monthly aggregation for this year
+        chart_data <- filtered_data %>%
+          group_by(day) %>%
+          summarise(
+            online = sum(is_online & !is_noshow),
+            clinic = sum(!is_online & !is_noshow),
+            clinic1 = sum(!is_online & !is_noshow & clinic_name == "clinic1"),
+            clinic2 = sum(!is_online & !is_noshow & clinic_name == "clinic2"),
+            clinic3 = sum(!is_online & !is_noshow & clinic_name == "clinic3"),
+            total = sum(!is_noshow),
+            .groups = "drop"
+          ) %>%
+          arrange(match(day, month.abb))
+      } else {
+        chart_data <- filtered_data %>%
+          group_by(day, appointment_date) %>%
+          summarise(
+            online = sum(is_online & !is_noshow),
+            clinic = sum(!is_online & !is_noshow),
+            clinic1 = sum(!is_online & !is_noshow & clinic_name == "clinic1"),
+            clinic2 = sum(!is_online & !is_noshow & clinic_name == "clinic2"),
+            clinic3 = sum(!is_online & !is_noshow & clinic_name == "clinic3"),
+            total = sum(!is_noshow),
+            .groups = "drop"
+          ) %>%
+          arrange(appointment_date) %>%
+          select(-appointment_date)
+      }
         
     } else if (chart == "noshow") {
       # No-show rate chart
-      chart_data <- filtered_data %>%
-        group_by(day, appointment_date) %>%
-        summarise(
-          total_online = sum(is_online),
-          noshow_online = sum(is_online & is_noshow),
-          total_clinic = sum(!is_online),
-          noshow_clinic = sum(!is_online & is_noshow),
-          total_clinic1 = sum(!is_online & clinic_name == "clinic1"),
-          noshow_clinic1 = sum(!is_online & clinic_name == "clinic1" & is_noshow),
-          total_clinic2 = sum(!is_online & clinic_name == "clinic2"),
-          noshow_clinic2 = sum(!is_online & clinic_name == "clinic2" & is_noshow),
-          total_clinic3 = sum(!is_online & clinic_name == "clinic3"),
-          noshow_clinic3 = sum(!is_online & clinic_name == "clinic3" & is_noshow),
-          .groups = "drop"
-        ) %>%
-        mutate(
-          online = ifelse(total_online > 0, round(noshow_online / total_online * 100, 1), 0),
-          clinic = ifelse(total_clinic > 0, round(noshow_clinic / total_clinic * 100, 1), 0),
-          clinic1 = ifelse(total_clinic1 > 0, round(noshow_clinic1 / total_clinic1 * 100, 1), 0),
-          clinic2 = ifelse(total_clinic2 > 0, round(noshow_clinic2 / total_clinic2 * 100, 1), 0),
-          clinic3 = ifelse(total_clinic3 > 0, round(noshow_clinic3 / total_clinic3 * 100, 1), 0),
-          total = ifelse((total_online + total_clinic) > 0, round((noshow_online + noshow_clinic) / (total_online + total_clinic) * 100, 1), 0)
-        ) %>%
-        arrange(appointment_date) %>%
-        select(day, online, clinic, clinic1, clinic2, clinic3, total)
+      if (period == "thisyear") {
+        chart_data <- filtered_data %>%
+          group_by(day) %>%
+          summarise(
+            total_online = sum(is_online),
+            noshow_online = sum(is_online & is_noshow),
+            total_clinic = sum(!is_online),
+            noshow_clinic = sum(!is_online & is_noshow),
+            total_clinic1 = sum(!is_online & clinic_name == "clinic1"),
+            noshow_clinic1 = sum(!is_online & clinic_name == "clinic1" & is_noshow),
+            total_clinic2 = sum(!is_online & clinic_name == "clinic2"),
+            noshow_clinic2 = sum(!is_online & clinic_name == "clinic2" & is_noshow),
+            total_clinic3 = sum(!is_online & clinic_name == "clinic3"),
+            noshow_clinic3 = sum(!is_online & clinic_name == "clinic3" & is_noshow),
+            .groups = "drop"
+          ) %>%
+          mutate(
+            online = ifelse(total_online > 0, round(noshow_online / total_online * 100, 1), 0),
+            clinic = ifelse(total_clinic > 0, round(noshow_clinic / total_clinic * 100, 1), 0),
+            clinic1 = ifelse(total_clinic1 > 0, round(noshow_clinic1 / total_clinic1 * 100, 1), 0),
+            clinic2 = ifelse(total_clinic2 > 0, round(noshow_clinic2 / total_clinic2 * 100, 1), 0),
+            clinic3 = ifelse(total_clinic3 > 0, round(noshow_clinic3 / total_clinic3 * 100, 1), 0),
+            total = ifelse((total_online + total_clinic) > 0, round((noshow_online + noshow_clinic) / (total_online + total_clinic) * 100, 1), 0)
+          ) %>%
+          arrange(match(day, month.abb)) %>%
+          select(day, online, clinic, clinic1, clinic2, clinic3, total)
+      } else {
+        chart_data <- filtered_data %>%
+          group_by(day, appointment_date) %>%
+          summarise(
+            total_online = sum(is_online),
+            noshow_online = sum(is_online & is_noshow),
+            total_clinic = sum(!is_online),
+            noshow_clinic = sum(!is_online & is_noshow),
+            total_clinic1 = sum(!is_online & clinic_name == "clinic1"),
+            noshow_clinic1 = sum(!is_online & clinic_name == "clinic1" & is_noshow),
+            total_clinic2 = sum(!is_online & clinic_name == "clinic2"),
+            noshow_clinic2 = sum(!is_online & clinic_name == "clinic2" & is_noshow),
+            total_clinic3 = sum(!is_online & clinic_name == "clinic3"),
+            noshow_clinic3 = sum(!is_online & clinic_name == "clinic3" & is_noshow),
+            .groups = "drop"
+          ) %>%
+          mutate(
+            online = ifelse(total_online > 0, round(noshow_online / total_online * 100, 1), 0),
+            clinic = ifelse(total_clinic > 0, round(noshow_clinic / total_clinic * 100, 1), 0),
+            clinic1 = ifelse(total_clinic1 > 0, round(noshow_clinic1 / total_clinic1 * 100, 1), 0),
+            clinic2 = ifelse(total_clinic2 > 0, round(noshow_clinic2 / total_clinic2 * 100, 1), 0),
+            clinic3 = ifelse(total_clinic3 > 0, round(noshow_clinic3 / total_clinic3 * 100, 1), 0),
+            total = ifelse((total_online + total_clinic) > 0, round((noshow_online + noshow_clinic) / (total_online + total_clinic) * 100, 1), 0)
+          ) %>%
+          arrange(appointment_date) %>%
+          select(day, online, clinic, clinic1, clinic2, clinic3, total)
+      }
         
     } else if (chart == "duration") {
       # Average duration chart
-      chart_data <- filtered_data %>%
-        filter(!is_noshow) %>%  # Only completed appointments
-        group_by(day, appointment_date) %>%
-        summarise(
-          value = round(mean(duration_minutes, na.rm = TRUE), 1),
-          .groups = "drop"
-        ) %>%
-        arrange(appointment_date) %>%
-        select(-appointment_date)
+      if (period == "thisyear") {
+        chart_data <- filtered_data %>%
+          filter(!is_noshow) %>%  # Only completed appointments
+          group_by(day) %>%
+          summarise(
+            value = round(mean(duration_minutes, na.rm = TRUE), 1),
+            .groups = "drop"
+          ) %>%
+          arrange(match(day, month.abb))
+      } else {
+        chart_data <- filtered_data %>%
+          filter(!is_noshow) %>%  # Only completed appointments
+          group_by(day, appointment_date) %>%
+          summarise(
+            value = round(mean(duration_minutes, na.rm = TRUE), 1),
+            .groups = "drop"
+          ) %>%
+          arrange(appointment_date) %>%
+          select(-appointment_date)
+      }
     }
     
     return(list(

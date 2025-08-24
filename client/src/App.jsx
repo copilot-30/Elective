@@ -39,7 +39,7 @@ import PatientLayout from './components/patient/PatientLayout';
 import PatientDashboard from './pages/patient/Dashboard';
 import PatientAppointments from './pages/patient/Appointments';
 import MedicalRecords from './pages/patient/MedicalRecords';
-import PatientAnalytics from './pages/patient/Analytics';
+import PatientAnalytics from './pages/patient/Analytics/Analytics';
 
 
 import PatientDiagnostics from './pages/patient/Diagnostics';

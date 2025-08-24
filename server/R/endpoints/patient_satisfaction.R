@@ -4,23 +4,31 @@
 # Function to get patient satisfaction data
 get_patient_satisfaction <- function(period = "alltime") {
   current_date <- Sys.Date()
-  
-  # Filter data based on period
+  # Map frontend period values to backend filter
+  mapped_period <- switch(period,
+    "overall" = "alltime",
+    "7days" = "last7days",
+    "thismonth" = "thismonth",
+    "last3months" = "last3months",
+    "alltime"
+  )
+
+  # Filter data based on mapped period
   filtered_data <- appointments_data
-  if (period == "last30days") {
-    start_date <- current_date - 30
-    filtered_data <- appointments_data %>%
-      filter(as.Date(date) >= start_date)
-  } else if (period == "last7days") {
+  if (mapped_period == "last7days") {
     start_date <- current_date - 7
     filtered_data <- appointments_data %>%
       filter(as.Date(date) >= start_date)
-  } else if (period == "last90days") {
+  } else if (mapped_period == "thismonth") {
+    start_date <- lubridate::floor_date(current_date, "month")
+    filtered_data <- appointments_data %>%
+      filter(as.Date(date) >= start_date)
+  } else if (mapped_period == "last3months") {
     start_date <- current_date - 90
     filtered_data <- appointments_data %>%
       filter(as.Date(date) >= start_date)
   }
-  # If period == "alltime", use all data (no filtering)
+  # If mapped_period == "alltime", use all data (no filtering)
   
   # Calculate satisfaction statistics
   satisfaction_ratings <- filtered_data %>%
