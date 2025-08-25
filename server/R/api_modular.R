@@ -84,8 +84,7 @@ function(patient_id = "patient300") {
   
   patient_name <- if(nrow(patient_info) > 0) patient_info$name[1] else paste("Patient", patient_id)
   
-  # Process all vitals data for trend visualization
-  # Create a comprehensive dataset with all vital signs per date
+  # Process all vitals data for trend visualization using actual appointment data
   vitals_trends <- patient_appointments %>%
     filter(!is.na(date)) %>%
     mutate(
@@ -101,58 +100,6 @@ function(patient_id = "patient300") {
     ) %>%
     select(date, systolic, diastolic, heartRate, temperature, glucose, oxygenSaturation, respiratoryRate, bmi) %>%
     arrange(as.Date(date))
-  
-  # Fill missing data with reasonable interpolation or last known values
-  # For demo purposes, we'll ensure we have at least 6 months of data
-  if (nrow(vitals_trends) < 6) {
-    # Generate last 6 months of data with some variation
-    current_date <- Sys.Date()
-    dates <- seq(from = current_date - months(5), to = current_date, by = "month")
-    
-    # Get baseline values from existing data or use defaults
-    baseline_systolic <- ifelse(any(!is.na(vitals_trends$systolic)), 
-                               mean(vitals_trends$systolic, na.rm = TRUE), 120)
-    baseline_diastolic <- ifelse(any(!is.na(vitals_trends$diastolic)), 
-                                mean(vitals_trends$diastolic, na.rm = TRUE), 80)
-    baseline_hr <- ifelse(any(!is.na(vitals_trends$heartRate)), 
-                         mean(vitals_trends$heartRate, na.rm = TRUE), 72)
-    baseline_temp <- ifelse(any(!is.na(vitals_trends$temperature)), 
-                           mean(vitals_trends$temperature, na.rm = TRUE), 98.6)
-    baseline_glucose <- ifelse(any(!is.na(vitals_trends$glucose)), 
-                              mean(vitals_trends$glucose, na.rm = TRUE), 95)
-    baseline_oxygen <- ifelse(any(!is.na(vitals_trends$oxygenSaturation)), 
-                             mean(vitals_trends$oxygenSaturation, na.rm = TRUE), 98)
-    baseline_respiratory <- ifelse(any(!is.na(vitals_trends$respiratoryRate)), 
-                                  mean(vitals_trends$respiratoryRate, na.rm = TRUE), 16)
-    baseline_bmi <- ifelse(any(!is.na(vitals_trends$bmi)), 
-                          mean(vitals_trends$bmi, na.rm = TRUE), 24)
-    
-    # Generate realistic variations
-    set.seed(as.numeric(gsub("patient", "", patient_id))) # Consistent data per patient
-    
-    vitals_trends <- data.frame(
-      date = as.character(dates),
-      systolic = round(baseline_systolic + rnorm(6, 0, 5), 0),
-      diastolic = round(baseline_diastolic + rnorm(6, 0, 3), 0),
-      heartRate = round(baseline_hr + rnorm(6, 0, 8), 0),
-      temperature = round(baseline_temp + rnorm(6, 0, 0.5), 1),
-      glucose = round(baseline_glucose + rnorm(6, 0, 10), 0),
-      oxygenSaturation = round(baseline_oxygen + rnorm(6, 0, 1), 0),
-      respiratoryRate = round(baseline_respiratory + rnorm(6, 0, 2), 0),
-      bmi = round(baseline_bmi + rnorm(6, 0, 0.5), 1)
-    ) %>%
-    # Ensure values are within realistic ranges
-    mutate(
-      systolic = pmax(90, pmin(180, systolic)),
-      diastolic = pmax(60, pmin(120, diastolic)),
-      heartRate = pmax(50, pmin(120, heartRate)),
-      temperature = pmax(97.0, pmin(101.0, temperature)),
-      glucose = pmax(70, pmin(200, glucose)),
-      oxygenSaturation = pmax(94, pmin(100, oxygenSaturation)),
-      respiratoryRate = pmax(12, pmin(25, respiratoryRate)),
-      bmi = pmax(15.0, pmin(40.0, bmi))
-    )
-  }
   
   # Calculate current readings and status
   latest_data <- vitals_trends[nrow(vitals_trends), ]

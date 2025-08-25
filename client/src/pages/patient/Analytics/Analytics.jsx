@@ -4,7 +4,9 @@ import MedicationTimeline from './MedicationTimeline';
 import { Activity, Heart, Thermometer } from 'lucide-react';
 import styles from './Analytics.module.css';
 
-const Analytics = () => {
+
+
+const Analytics = ({ patientId = '300' }) => {
 
   // Sample patient vital data
   const patientVitalData = {
@@ -137,6 +139,36 @@ const Analytics = () => {
     );
   };
 
+
+
+  const [patientName, setPatientName] = React.useState('');
+  const [appointmentCount, setAppointmentCount] = React.useState(0);
+  const [activeMedications, setActiveMedications] = React.useState(0);
+
+  React.useEffect(() => {
+    // Fetch patients
+    fetch('/mock_data/patients_clean.json')
+      .then(res => res.json())
+      .then(data => {
+        const patientObj = data.find(p => p.id === `patient${patientId}`);
+        setPatientName(patientObj ? patientObj.name : 'Unknown');
+      });
+    // Fetch appointments
+    fetch('/mock_data/appointments_cleaned.json')
+      .then(res => res.json())
+      .then(data => {
+        const count = data.filter(a => a.patient_id === `patient${patientId}`).length;
+        setAppointmentCount(count);
+      });
+    // Fetch medications (dynamic patient)
+    fetch(`/mock_data/medications_patient${patientId}.json`)
+      .then(res => res.json())
+      .then(data => {
+        const active = data.filter(m => (m.patient_id === `patient${patientId}`) && (String(m.status).toLowerCase() === 'active')).length;
+        setActiveMedications(active);
+      });
+  }, [patientId]);
+
   const latestReadings = getLatestReadings();
 
   return (
@@ -147,14 +179,29 @@ const Analytics = () => {
           <div className={styles.statsGrid}>
             <div className={styles.statCard}>
               <div className={styles.statHeader}>
+                <div className={`${styles.statIcon} ${styles.user}`}>
+                  <Activity size={24} />
+                </div>
+                <div>
+                  <div className={styles.statTitle}>Patient</div>
+                  <div className={styles.statValue}>{patientName}</div>
+                  <div className={`${styles.statChange} ${styles.neutral}`}>
+                    Patient ID: {patientId}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.statCard}>
+              <div className={styles.statHeader}>
                 <div className={`${styles.statIcon} ${styles.appointments}`}>
                   <Activity size={24} />
                 </div>
                 <div>
                   <div className={styles.statTitle}>Total Appointments</div>
-                  <div className={styles.statValue}>12</div>
-                  <div className={`${styles.statChange} ${styles.positive}`}>
-                    +2 this month
+                  <div className={styles.statValue}>{appointmentCount}</div>
+                  <div className={`${styles.statChange} ${styles.neutral}`}>
+                    All time
                   </div>
                 </div>
               </div>
@@ -162,29 +209,14 @@ const Analytics = () => {
 
             <div className={styles.statCard}>
               <div className={styles.statHeader}>
-                <div className={`${styles.statIcon} ${styles.health}`}>
-                  <Heart size={24} />
-                </div>
-                <div>
-                  <div className={styles.statTitle}>Health Score</div>
-                  <div className={styles.statValue}>85%</div>
-                  <div className={`${styles.statChange} ${styles.positive}`}>
-                    +5% improvement
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={styles.statCard}>
-              <div className={styles.statHeader}>
-                <div className={`${styles.statIcon} ${styles.upcoming}`}>
+                <div className={`${styles.statIcon} ${styles.medications}`}>
                   <Thermometer size={24} />
                 </div>
                 <div>
-                  <div className={styles.statTitle}>Next Appointment</div>
-                  <div className={styles.statValue}>3</div>
-                  <div className={`${styles.statChange} ${styles.neutral}`}>
-                    days away
+                  <div className={styles.statTitle}>Active Medications</div>
+                  <div className={styles.statValue}>{activeMedications}</div>
+                  <div className={`${styles.statChange} ${styles.positive}`}>
+                    Currently taking
                   </div>
                 </div>
               </div>

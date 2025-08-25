@@ -366,32 +366,33 @@ const MedicationTimeline = ({ patientId = '300' }) => {
       {selectedMed && (
         <div className={styles.currentReadings}>
           <div className={styles.readingCard}>
-            <div className={styles.readingLabel}>Concern</div>
-            <div className={styles.readingValue}>{selectedConcern}</div>
-            <span className={styles.concernTag}>{selectedConcern}</span>
+            <div className={styles.readingLabel}>Start Date</div>
+            <div className={styles.readingValue}>
+              {new Date(selectedMed.startDate).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+              })}
+            </div>
           </div>
           
           <div className={styles.readingCard}>
-            <div className={styles.readingLabel}>Medication</div>
-            <div className={styles.readingValue}>{selectedMed.name} ({selectedMed.dosage})</div>
+            <div className={styles.readingLabel}>End Date</div>
+            <div className={styles.readingValue}>
+              {new Date(selectedMed.endDate).toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric' 
+              })}
+            </div>
             <span className={`${styles.readingStatus} ${styles[selectedMed.status]}`}>
               {getStatusLabel(selectedMed.status)}
             </span>
           </div>
           
           <div className={styles.readingCard}>
-            <div className={styles.readingLabel}>Duration</div>
-            <div className={styles.readingValue}>{selectedMed.duration} days</div>
-          </div>
-          
-          <div className={styles.readingCard}>
-            <div className={styles.readingLabel}>Days Remaining</div>
-            <div className={styles.readingValue}>
-              {Math.max(0, selectedMed.duration - Math.ceil((new Date() - new Date(selectedMed.startDate)) / (1000 * 60 * 60 * 24)))}
-            </div>
-            <span className={`${styles.readingStatus} ${styles[selectedMed.status]}`}>
-              {selectedMed.status.charAt(0).toUpperCase() + selectedMed.status.slice(1)}
-            </span>
+            <div className={styles.readingLabel}>When to Take</div>
+            <div className={styles.readingValue}>{selectedMed.frequency}</div>
           </div>
           
           <div className={styles.readingCard}>
